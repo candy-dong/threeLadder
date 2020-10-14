@@ -4,7 +4,7 @@
       <el-button
         class="btn1"
         type="success" plain
-        size=""
+        @click="handleClick"
         >活动跟踪
       </el-button>
       <el-button
@@ -28,6 +28,11 @@ export default {
     return {}
   },
   methods: {
+    handleClick() {
+      this.$router.push({
+        path: '/marketing'
+      })
+    }
   }
 }
 </script>
