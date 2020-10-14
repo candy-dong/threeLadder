@@ -1,7 +1,10 @@
 <template>
   <div class="index">
     <div class="mainBox">
-      <el-button
+      <div class="logo marketing">营销探索</div>
+      <div class="logo visualize">可视化分析</div>
+      <div class="logo model">模型建设</div>
+      <!-- <el-button
         class="btn1"
         type="success" plain
         size=""
@@ -16,7 +19,7 @@
         class="btn3"
         type="danger" plain
         >模型建设
-      </el-button>
+      </el-button> -->
     </div>
   </div>
 </template>
@@ -70,4 +73,29 @@ export default {
     padding: 20px 30px;
     font-size: 24px;
   }
+  .logo {
+    width: 80px;
+    padding: 5px 10px;
+    /* height: 32px; */
+    background-color: aqua;
+    text-align: center;
+    line-height: 24px;
+  }
+  .marketing {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+  }
+  .visualize {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+  .model {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
 </style>

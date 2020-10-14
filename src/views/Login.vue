@@ -15,7 +15,7 @@
           :loading="loading"
           size="medium"
           type="primary"
-          style="width:84px; margin-right:15px"
+          style="width:120px; margin-right:15px"
           @click.native.prevent="handleLogin"
         >
           <span v-if="!loading">登 录</span>
@@ -24,7 +24,7 @@
         <el-button
           size="medium"
           type="primary"
-          style="width:84px; margin-left:15px"
+          style="width:120px; margin-left:15px"
         >
           <span>注 册</span>
         </el-button>
