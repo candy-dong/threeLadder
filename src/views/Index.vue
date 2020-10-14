@@ -1,9 +1,9 @@
 <template>
   <div class="index">
     <div class="mainBox">
-      <div class="logo marketing">营销探索</div>
-      <div class="logo visualize">可视化分析</div>
-      <div class="logo model">模型建设</div>
+      <div class="logo marketing" @click="handleClick('/marketing')">营销探索</div>
+      <div class="logo visualize" @click="handleClick('/visual')">可视化分析</div>
+      <div class="logo model" @click="handleClick('/model')">模型建设</div>
       <!-- <el-button
         class="btn1"
         type="success" plain
@@ -31,9 +31,9 @@ export default {
     return {}
   },
   methods: {
-    handleClick() {
+    handleClick(val) {
       this.$router.push({
-        path: '/marketing'
+        path: val
       })
     }
   }
@@ -79,6 +79,7 @@ export default {
     font-size: 24px;
   }
   .logo {
+    cursor: pointer;
     width: 80px;
     padding: 5px 10px;
     /* height: 32px; */
