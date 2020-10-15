@@ -34,8 +34,6 @@
           <div class="tableau">一键跑批录屏</div>
         </el-form-item>
       </el-form>
-      
-
     <div class="clear"></div>
   </div>
 </template>
