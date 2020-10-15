@@ -47,6 +47,19 @@
         <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
         <!-- <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div> -->
       </el-upload>
+      <!-- <el-button slot="trigger" size="small" type="primary" class="upConfirm">确 定</el-button> -->
+      <el-table
+        stripe border max-height="500"
+        :data="tableData"
+        style="width: 100%;margin-top:20px"
+        @row-click="rowClick">
+          <el-table-column
+            v-for="item in tableColum"
+            :key="item.label"
+            :prop="item.value"
+            :label="item.label">
+          </el-table-column>
+      </el-table>
     </div>
     <div v-if="active === 2 && value1 == '1'"  style="padding-top: 30px;">
       <el-row :gutter="32">
@@ -186,7 +199,63 @@ export default {
         label: '饼状图'
       }],
       chartSelect: '线性图',
-      chartSelect1: '线性图'
+      chartSelect1: '线性图',
+         // 模型训练 表格
+      tableColum: [{
+            value: 'date',
+            label: '日期'
+          },{
+            value: 'name',
+            label: '姓名'
+          },{
+            value: 'sex',
+            label: '性别'
+          },{
+            value: 'age',
+            label: '年龄'
+          },{
+            value: 'remark',
+            label: '职位'
+          },{
+            value: 'address',
+            label: '地址'
+          }],
+      tableData: [{
+            date: '2016-05-02',
+            name: '王小虎',
+            sex: '男',
+            age: '24',
+            remark: '销售员',
+            address: '上海市普陀区金沙江路 1518 弄',
+          }, {
+            date: '2016-05-04',
+            name: '赵明明',
+            sex: '男',
+            age: '35',
+            remark: '经理',
+            address: '上海市普陀区金沙江路 1517 弄'
+          }, {
+            date: '2016-05-01',
+            name: '王凌凌',
+            sex: '女',
+            age: '20',
+            remark: '实习生',
+            address: '上海市普陀区金沙江路 1519 弄'
+          }, {
+            date: '2016-05-03',
+           name: '杨霞',
+            sex: '女',
+            age: '42',
+            remark: '总监',
+            address: '上海市普陀区金沙江路 1516 弄'
+          }, {
+            date: '2016-05-23',
+           name: '朱三',
+            sex: '男',
+            age: '36',
+            remark: '总经理',
+            address: '上海市普陀区金沙江路 1534 弄'
+          }]
     }
   },
   methods: {
@@ -224,5 +293,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.upConfirm {
+  margin: 20px 0;
 }
 </style>
