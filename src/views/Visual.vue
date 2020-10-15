@@ -36,8 +36,17 @@
       </el-checkbox-group>
       <el-button @click="next2" style="margin-left: 50px;">下一步</el-button>
     </div>
-    <div v-if="active === 1 && value1 == '2'" style="padding-top: 30px;">
-      外部数据上传
+    <div v-if="active === 1 && value1 == '2'">
+      <h3>外部数据上传</h3>
+      <el-upload
+        class="upload"
+        drag
+        action="https://jsonplaceholder.typicode.com/posts/"
+        multiple>
+        <i class="el-icon-upload"></i>
+        <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+        <!-- <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div> -->
+      </el-upload>
     </div>
     <div v-if="active === 2 && value1 == '1'"  style="padding-top: 30px;">
       <el-row :gutter="32">
