@@ -43,7 +43,9 @@
       <el-button  @click="next2" style="margin-left: 50px;">下一步</el-button>
     </div>
     <!-- 模型建设 -->
-    <div v-if="active === 2" style="padding-top: 30px;">
+    <div v-if="active === 2">
+      <h3>KS图：</h3>
+      <div class="ks"></div>
       <el-table
         stripe border max-height="500"
         :data="tableData"
@@ -56,7 +58,6 @@
             :label="item.label">
           </el-table-column>
       </el-table>
-      <!-- <el-button  @click="next2" style="margin-left: 50px;">一键生成模型</el-button> -->
       <el-button type="primary" plain @click="diolog" style="margin-top:30px">一键生成模型</el-button>
     </div>
   </div>
@@ -179,3 +180,11 @@ export default {
   }
 }
 </script>
+<style scoped>
+.ks {
+  width: 300px;
+  height: 100px;
+  margin-bottom: 30px;
+  border: 1px solid red;
+}
+</style>
