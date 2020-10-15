@@ -29,9 +29,12 @@
         <!-- 一键跑批 -->
         <el-form-item v-if="active===2" label="一键跑批">
           <el-button  type="warning" plain @click="step3">一键跑批</el-button>
-          <div class="tableau" style="margin-top: 20px">一键跑批录屏</div>
+        </el-form-item>
+        <el-form-item v-if="active===3" label="一键跑批录屏结果" label-width="140px">
+          <div class="tableau">一键跑批录屏</div>
         </el-form-item>
       </el-form>
+      
 
     <div class="clear"></div>
   </div>
