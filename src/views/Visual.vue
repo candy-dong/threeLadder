@@ -26,18 +26,101 @@
       </el-select>
       <el-button @click="next1" style="margin-left: 50px;">下一步</el-button>
     </div>
-    <div v-if="active === 1 && value1 == '1'" style="padding-top: 30px;">
-      ssdds
+    <div v-if="active === 1 && value1 == '1'" style="padding-top: 50px; display: flex; align-items: center;">
+      <span style="padding-right: 30px;">请选择指标：</span>
+      <el-checkbox-group v-model="checkList">
+        <el-checkbox label="进件量"></el-checkbox>
+        <el-checkbox label="发卡量"></el-checkbox>
+        <el-checkbox label="激活量"></el-checkbox>
+        <el-checkbox label="首刷量"></el-checkbox>
+      </el-checkbox-group>
+      <el-button @click="next2" style="margin-left: 50px;">下一步</el-button>
     </div>
     <div v-if="active === 1 && value1 == '2'" style="padding-top: 30px;">
       外部数据上传
+    </div>
+    <div v-if="active === 2 && value1 == '1'"  style="padding-top: 30px;">
+      <el-row :gutter="32">
+        <el-col :xs="24" :sm="24" :lg="12">
+        <div class="chart-wrapper">
+          <div class="selectCon">
+            <el-select v-model="zhibiaoSelect" @change="selectChange" size="mini">
+              <el-option
+                v-for="item in optionsZhibiao"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+            <el-select v-model="chartSelect" size="mini">
+              <el-option
+                v-for="item in optionsChart"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </div>
+          <chart :chart-data="chartData" :chart-type="chartSelect" />
+        </div>
+      </el-col>
+      <el-col :xs="24" :sm="24" :lg="12">
+        <div class="chart-wrapper">
+          <div class="selectCon">
+            <el-select v-model="zhibiaoSelect1" @change="selectChange1" size="mini">
+              <el-option
+                v-for="item in optionsZhibiao"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+            <el-select v-model="chartSelect1" size="mini">
+              <el-option
+                v-for="item in optionsChart"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </div>
+          <chart :chart-data="chartData1" :chart-type="chartSelect1"/>
+        </div>
+      </el-col>
+      </el-row>
     </div>
   </div>
 </template>
 
 <script>
+import chart from './LineChart.vue'
+const lineChartData = {
+  newVisitis: {
+    data: [100, 120, 161, 134, 105, 160, 165],
+    time: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+    title: '进件量'
+  },
+  messages: {
+    data: [200, 192, 120, 144, 160, 130, 140],
+    time: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+    title: '发卡量'
+  },
+  purchases: {
+    data: [80, 100, 121, 104, 105, 90, 100],
+    time: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+    title: '激活量'
+  },
+  shoppings: {
+    data: [130, 140, 141, 142, 145, 150, 160],
+    time: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+    title: '首刷量'
+  }
+}
 export default {
   name: 'Visual',
+  components: {
+    chart
+  },
   data() {
     return {
       active: 0,
@@ -64,7 +147,37 @@ export default {
         { value: '1', label: '活动跟踪' },
         { value: '2', label: '活动分析' }
       ],
-      value1: ''
+      value1: '',
+      checkList: ['进件量','激活量'],
+      chartData: lineChartData.newVisitis,
+      chartData1: lineChartData.purchases,
+      zhibiaoSelect: 'newVisitis',
+      zhibiaoSelect1: 'purchases',
+      optionsZhibiao: [{
+        value: 'newVisitis',
+        label: '进件量'
+      }, {
+        value: 'messages',
+        label: '发卡量'
+      }, {
+        value: 'purchases',
+        label: '激活量'
+      }, {
+        value: 'shoppings',
+        label: '首刷量'
+      }],
+      optionsChart: [{
+        value: '线性图',
+        label: '线性图'
+      }, {
+        value: '柱状图',
+        label: '柱状图'
+      }, {
+        value: '饼状图',
+        label: '饼状图'
+      }],
+      chartSelect: '线性图',
+      chartSelect1: '线性图'
     }
   },
   methods: {
@@ -79,7 +192,28 @@ export default {
       } else {
         this.$message.error('请确保您已选择活动和活动内容')
       }
+    },
+    next2() {
+      this.step3 = '图形展示'
+      this.active++
+    },
+    selectChange() {
+      this.chartData = lineChartData[this.zhibiaoSelect]
+    },
+    selectChange1() {
+      this.chartData1 = lineChartData[this.zhibiaoSelect1]
     }
   }
 }
 </script>
+<style scoped>
+.chart-wrapper {
+  background: rgb(255, 255, 255);
+  padding: 16px 16px 0px;
+}
+.selectCon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+</style>
