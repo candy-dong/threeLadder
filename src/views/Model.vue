@@ -60,6 +60,9 @@
       </el-table>
       <el-button type="primary" plain @click="diolog" style="margin-top:30px">一键生成模型</el-button>
     </div>
+    <div v-if="active === 3">
+     
+    </div>
   </div>
 </template>
 
@@ -172,10 +175,10 @@ export default {
             spinner: 'el-icon-loading',
             background: 'rgba(0, 0, 0, 0.7)'
       });
+      this.active++;
       setTimeout(() => {
-          loading.close();
-          this.active++;
-      }, 1000)
+        loading.close();
+      }, 2000)
     }
   }
 }
