@@ -60,9 +60,11 @@
       </el-table>
       <el-button type="primary" plain @click="diolog" style="margin-top:30px">一键生成模型</el-button>
     </div>
-    <div v-if="active === 3">
-     
-    </div>
+    <div v-if="active === 3"></div>
+		<!-- 加载中 -->
+		<div class="loading-bg" v-if="loading"><div class="loading-spinner">
+			<img src="../assets/loading.gif" alt="正在加载" class="loading-img">	
+		</div></div>
   </div>
 </template>
 
@@ -135,7 +137,8 @@ export default {
             date: '2016-05-03',
             name: '王小虎',
             address: '上海市普陀区金沙江路 1516 弄'
-          }]
+					}],
+					loading: false
     }
   },
   methods: {
@@ -148,14 +151,9 @@ export default {
     },
     next2() {
       if (this.targetValue && this.modelValue) {
-        const loading = this.$loading({
-          lock: true,
-          text: '等待中',
-          spinner: 'el-icon-loading',
-          background: 'rgba(0, 0, 0, 0.7)'
-        });
+        this.loading = true
         setTimeout(() => {
-          loading.close();
+					this.loading = false
           this.active++;
         }, 1000)
       } else {
@@ -169,15 +167,10 @@ export default {
         });
     },
     diolog(){
-      let loading = this.$loading({
-            lock: true,
-            text: '模型训练背景',
-            spinner: 'el-icon-loading',
-            background: 'rgba(0, 0, 0, 0.7)'
-      });
-      this.active++;
+			this.active++;
+			this.loading = true
       setTimeout(() => {
-        loading.close();
+				// this.loading = false
       }, 2000)
     }
   }
@@ -189,5 +182,24 @@ export default {
   height: 100px;
   margin-bottom: 30px;
   border: 1px solid red;
+}
+.loading-bg {
+	position: absolute;
+	z-index: 2000;
+	background-color: hsla(0,0%,100%,.75);
+	margin: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	transition: opacity .3s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.loading-img {
+	width: 300px;
+	height: 300px;
+	border-radius: 50%;
 }
 </style>
