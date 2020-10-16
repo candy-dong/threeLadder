@@ -1,9 +1,22 @@
 <template>
   <div class="index">
     <div class="mainBox">
-      <div class="logo marketing" @click="handleClick('/marketing')">营销探索</div>
-      <div class="logo visualize" @click="handleClick('/visual')">可视化分析</div>
-      <div class="logo model" @click="handleClick('/model')">模型建设</div>
+      <!-- <div class="logo marketing" >营销探索</div>
+      <div class="logo visualize" >可视化分析</div>
+      <div class="logo model" >模型建设</div> -->
+      <img src="../assets/louti.png" width="700" alt="">
+      <div @click="handleClick('/marketing')" style="cursor: pointer; position: absolute; left: 50px; bottom: 60px; font-size: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; font-style: italic;">
+        <img src="../assets/yingxiao.png" width="100" alt="" style="margin-bottom: 30px;">
+        <span>营销探索</span>
+      </div>
+      <div @click="handleClick('/visual')" style="cursor: pointer; position: absolute; left: 250px; bottom: 110px; font-size: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; font-style: italic;">
+        <img src="../assets/keshihua.png" width="120" alt="" style="margin-bottom: 30px;">
+        <span>可视化分析</span>
+      </div>
+      <div @click="handleClick('/model')" style="cursor: pointer; position: absolute; left: 500px; bottom: 160px; font-size: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; font-style: italic;">
+        <img src="../assets/model.png" width="120" alt="" style="margin-bottom: 30px;">
+        <span>模型建设</span>
+      </div>
       <!-- <el-button
         class="btn1"
         type="success" plain
@@ -47,13 +60,15 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    background-image: url('../assets/background2.jpg');
+    background-size: cover;
   }
   .mainBox {
-    width: 760px;
-    height: 460px;
-    /* background-color: aquamarine; */
     position: relative;
+    /* overflow: hidden; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .btn1 {
     position: absolute;

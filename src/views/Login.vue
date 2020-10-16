@@ -66,7 +66,8 @@ export default {
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    background-color: aquamarine;
+    background-image: url('../assets/background.jpg');
+    background-size: cover;
   }
   .titleLog {
     color: #ffffff;
