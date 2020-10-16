@@ -80,6 +80,7 @@
                 :key="item.value"
                 :label="item.label"
                 :value="item.value">
+                <img :src="item.img" alt="" width="30"><span style="padding-left: 10px;">{{item.label}}</span>
               </el-option>
             </el-select>
           </div>
@@ -94,7 +95,8 @@
                 v-for="item in optionsZhibiao"
                 :key="item.value"
                 :label="item.label"
-                :value="item.value">
+                :value="item.value"
+              >
               </el-option>
             </el-select>
             <el-select v-model="chartSelect1" size="mini">
@@ -102,7 +104,9 @@
                 v-for="item in optionsChart"
                 :key="item.value"
                 :label="item.label"
-                :value="item.value">
+                :value="item.value"
+              >
+                <img :src="item.img" alt="" width="30"><span style="padding-left: 10px;">{{item.label}}</span>
               </el-option>
             </el-select>
           </div>
@@ -190,13 +194,16 @@ export default {
       }],
       optionsChart: [{
         value: '线性图',
-        label: '线性图'
+        label: '线性图',
+        img: require('../assets/IMG_8815.png')
       }, {
         value: '柱状图',
-        label: '柱状图'
+        label: '柱状图',
+        img: require('../assets/IMG_8814.png')
       }, {
         value: '饼状图',
-        label: '饼状图'
+        label: '饼状图',
+        img: require('../assets/IMG_8812.png')
       }],
       chartSelect: '线性图',
       chartSelect1: '线性图',
@@ -296,5 +303,9 @@ export default {
 }
 .upConfirm {
   margin: 20px 0;
+}
+.el-select-dropdown__item {
+  display: flex;
+  align-items: center;
 }
 </style>

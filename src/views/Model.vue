@@ -45,7 +45,7 @@
     <!-- 模型建设 -->
     <div v-if="active === 2">
       <h3>KS图：</h3>
-      <div class="ks"></div>
+      <img src="../assets/ks.png" width="500" alt="">
       <el-table
         stripe border max-height="500"
         :data="tableData"
