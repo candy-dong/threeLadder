@@ -41,14 +41,20 @@
       <el-upload
         class="upload"
         drag
-        action="https://jsonplaceholder.typicode.com/posts/"
-        multiple>
+        action="/"
+        multiple
+        :on-error="handleError"
+        :file-list="fileList">
         <i class="el-icon-upload"></i>
         <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
         <!-- <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div> -->
       </el-upload>
       <!-- <el-button slot="trigger" size="small" type="primary" class="upConfirm">确 定</el-button> -->
-      <fixed-thead></fixed-thead>
+      <div v-if="tableFlag">
+        <fixed-thead></fixed-thead>
+        <el-button type="primary" plain style="margin-top:30px" @click="uploadCommit">上传</el-button>
+      </div>
+
     </div>
     <div v-if="active === 2 && value1 == '1'"  style="padding-top: 30px;">
       <el-row :gutter="32">
@@ -104,6 +110,26 @@
       </el-col>
       </el-row>
     </div>
+
+    <el-dialog title="文件解析" :visible.sync="open" width="700px" append-to-body>
+      <span>文本分列向导判定您的数据具有分隔符, 若一切设置无误，请点击‘确定’</span>
+      <p>分隔符：</p>
+      <el-radio-group v-model="radio">
+        <el-radio :label="0">逗号</el-radio>
+        <el-radio :label="1">Tab键</el-radio>
+        <el-radio :label="2">分号</el-radio>
+        <el-radio :label="3">空格</el-radio>
+      </el-radio-group>
+      <p>标题：</p>
+      <p>
+        <el-checkbox v-model="checked">首行是否为标题</el-checkbox>
+      </p>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="open = false">取 消</el-button>
+        <el-button  @click="dialogClick">确 定</el-button>
+      </div>
+    </el-dialog>
+
   </div>
 </template>
 
@@ -130,7 +156,7 @@ const lineChartData = {
     data: [130, 140, 141, 142, 145, 150, 160],
     time: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
     title: '首刷量'
-  }
+  },
 }
 export default {
   name: 'Visual',
@@ -253,7 +279,12 @@ export default {
             age: '36',
             remark: '总经理',
             address: '上海市普陀区金沙江路 1534 弄'
-          }]
+          }],
+          fileList: [],
+          radio: 0,
+          open: false,
+          checked: true,
+          tableFlag: false
     }
   },
   methods: {
@@ -278,6 +309,41 @@ export default {
     },
     selectChange1() {
       this.chartData1 = lineChartData[this.zhibiaoSelect1]
+    },
+    handleError(err, file, fileList) {
+      setTimeout(() => {
+        this.fileList = [{
+        name: 'demo.xlsx',
+        url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+      }, {
+        name: 'demo.txt',
+        url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+      }]
+        this.open = true
+      }, 300)
+    },
+    dialogClick() {
+      this.open = false
+      this.tableFlag = true
+    },
+    uploadCommit () {
+      this.$confirm('此操作将上传该文件, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '上传成功!'
+          });
+          this.step3 = '图形的智能化展现'
+      this.active++
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消上传'
+          });          
+        });
     }
   }
 }
@@ -298,5 +364,8 @@ export default {
 .el-select-dropdown__item {
   display: flex;
   align-items: center;
+}
+.el-upload-list {
+  width: 360px;
 }
 </style>
