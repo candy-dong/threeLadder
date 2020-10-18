@@ -48,18 +48,7 @@
         <!-- <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div> -->
       </el-upload>
       <!-- <el-button slot="trigger" size="small" type="primary" class="upConfirm">确 定</el-button> -->
-      <el-table
-        stripe border max-height="500"
-        :data="tableData"
-        style="width: 100%;margin-top:20px"
-        @row-click="rowClick">
-          <el-table-column
-            v-for="item in tableColum"
-            :key="item.label"
-            :prop="item.value"
-            :label="item.label">
-          </el-table-column>
-      </el-table>
+      <fixed-thead></fixed-thead>
     </div>
     <div v-if="active === 2 && value1 == '1'"  style="padding-top: 30px;">
       <el-row :gutter="32">
@@ -120,6 +109,7 @@
 
 <script>
 import chart from './LineChart.vue'
+import FixedThead from './FixedThead.vue'
 const lineChartData = {
   newVisitis: {
     data: [100, 120, 161, 134, 105, 160, 165],
@@ -145,7 +135,8 @@ const lineChartData = {
 export default {
   name: 'Visual',
   components: {
-    chart
+    chart,
+    FixedThead
   },
   data() {
     return {
