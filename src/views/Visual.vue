@@ -167,8 +167,8 @@ export default {
   data() {
     return {
       active: 0,
+      // step2: '',
       step2: '',
-      step3: '',
       options: [{
         value: '1',
         label: '活动1'
@@ -195,8 +195,8 @@ export default {
       checkList: ['进件量','发卡量'],
       chartData: lineChartData.newVisitis,
       chartData1: lineChartData.purchases,
-      zhibiaoSelect: 'newVisitis',
-      zhibiaoSelect1: 'purchases',
+      zhibiaoSelect: 'messages',
+      zhibiaoSelect1: 'newVisitis',
       optionsZhibiao: [{
         value: 'newVisitis',
         label: '进件量'
@@ -222,9 +222,29 @@ export default {
         value: '饼状图',
         label: '饼状图',
         img: require('../assets/IMG_8812.png')
+      }, {
+        value: '散点图',
+        label: '散点图',
+        img: require('../assets/IMG_8811.png')
+      }, {
+        value: '阶梯瀑布图',
+        label: '阶梯瀑布图',
+        img: require('../assets/IMG_8810.png')
+      }, {
+        value: '正负条形图',
+        label: '正负条形图',
+        img: require('../assets/IMG_8813.png')
+      }, {
+        value: '矩形树图',
+        label: '阶梯瀑布图',
+        img: require('../assets/IMG_8817.png')
+      }, {
+        value: '自定义系列',
+        label: '阶梯瀑布图',
+        img: require('../assets/IMG_8816.png')
       }],
       chartSelect: '线性图',
-      chartSelect1: '线性图',
+      chartSelect1: '柱状图',
          // 模型训练 表格
       tableColum: [{
             value: 'date',
@@ -294,7 +314,7 @@ export default {
         if (this.value1 === '1') {
           this.step2 = '选择指标'
         } else {
-          this.step2 = '外部数据上传'
+          this.step2 = '选择指标'
         }
         this.active++
       } else {
@@ -302,7 +322,7 @@ export default {
       }
     },
     next2() {
-      this.step3 = '图形展示'
+      this.step3 = '图形展现'
       this.active++
     },
     selectChange() {
