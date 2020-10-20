@@ -7,17 +7,22 @@
       <el-step title="一键跑批"></el-step>
       <el-step title="配置输出  "></el-step>
     </el-steps>
-     <el-form ref="form" label-width="120px" style="margin-top: 30px">
+     <el-form ref="form" style="margin-top: 30px">
         <!-- 逻辑确认 -->
-        <el-form-item v-if="active===0" label="数据探索">
-          <div class="tableau">tableau页面录屏</div>
+        <el-form-item v-if="active===0">
+          <!-- <div class="tableau">tableau页面录屏</div> -->
+          <div style="display: flex; justify-content: center;">
+            <video src="" autoplay controls height="500px" width='800px'></video>
+          </div>
         </el-form-item>
-        <el-form-item v-if="active===0" label="生成沟通名单" >
-          <el-button type="primary" plain @click="step1">确 定</el-button>
-          <div class="clear"></div>
+        <el-form-item v-if="active===0">
+          <div style="display: flex; justify-content: center;">
+            <el-button type="primary" plain @click="step1">生成沟通名单</el-button>
+          </div>
         </el-form-item>
         <!-- 渠道选择 -->
-        <el-form-item  v-if="active===1" label="模型选择" class = "formItem">
+        <el-form-item  v-if="active===1" style="display: flex; justify-content: center;">
+          <span>模型选择：</span>
           <el-select v-model="modelValue" placeholder="请选择模型">
             <el-option
               v-for="item in modelList"
@@ -25,8 +30,7 @@
               :label="item.label"
               :value="item.value"></el-option>
           </el-select>
-        </el-form-item>
-        <el-form-item  v-if="active===1" label="对比组选择" class = "formItem">
+          <span style="padding-left: 20px;">对比组选择：</span>
           <el-select v-model="compareValue" placeholder="请选择对比组">
             <el-option
               v-for="item in compareList"
@@ -35,6 +39,9 @@
               :value="item.value"></el-option>
           </el-select>
           <el-button  type="primary" plain @click="step2" style="margin-left: 10px">确 定</el-button>
+          <div style="display: flex; margin-top: 30px;">
+            <img src="../assets/background.jpg" alt="" width="1000" height="500">
+          </div>
         </el-form-item>
         <!-- 一键跑批 -->
         <el-form-item  v-if="active===2" label="渠道选择">
@@ -47,12 +54,16 @@
           </el-select>
           <!-- <el-button  type="primary" plain @click="step2" style="margin-left: 10px">确 定</el-button> -->
         </el-form-item>
-        <el-form-item v-if="active===2" label="一键跑批">
-
-          <el-button  type="primary" plain @click="step3">确 定</el-button>
+        <el-form-item v-if="active===2 && value" style="display: flex; justify-content: center;">
+          <img src="../assets/background.jpg" alt="" width="1000" height="500">
+          <div style="display: flex; justify-content: flex-end;">
+            <el-button  type="primary" plain @click="step3">一键跑批</el-button>
+          </div>
         </el-form-item>
-        <el-form-item v-if="active===3" label="一键跑批录屏结果" label-width="140px">
-          <div class="tableau">一键跑批录屏</div>
+        <el-form-item v-if="active===3">
+          <div style="display: flex; justify-content: center;">
+            <video src="" autoplay controls height="500px" width='800px'></video>
+          </div>
         </el-form-item>
       </el-form>
     <div class="clear"></div>
@@ -60,7 +71,6 @@
 		<div class="loading-bg" v-if="loading"><div class="loading-spinner">
 			<img src="../assets/loading.gif" alt="正在加载" class="loading-img">	
 		</div></div>
-  </div>
   </div>
 </template>
 
@@ -70,22 +80,22 @@ export default {
   data(){
     return {
        // 模型选择
-      modelList:  [
-          { value: '0', label: '模型1' },
-          { value: '1', label: '模型2' },
-          { value: '2', label: '模型3' },
-          { value: '4', label: '模型4' },
-          { value: '3', label: '模型5' },
-        ],
+      // modelList:  [
+      //     { value: '0', label: '模型1' },
+      //     { value: '1', label: '模型2' },
+      //     { value: '2', label: '模型3' },
+      //     { value: '4', label: '模型4' },
+      //     { value: '3', label: '模型5' },
+      //   ],
        modelValue: '',
        // 对比组选择
-      compareList:  [
-          { value: '0', label: '对比组1' },
-          { value: '1', label: '对比组2' },
-          { value: '2', label: '对比组2' },
-          { value: '4', label: '对比组3' },
-          { value: '3', label: '对比组4' },
-        ],
+      // compareList:  [
+      //     { value: '0', label: '对比组1' },
+      //     { value: '1', label: '对比组2' },
+      //     { value: '2', label: '对比组2' },
+      //     { value: '4', label: '对比组3' },
+      //     { value: '3', label: '对比组4' },
+      //   ],
       compareValue: '',
       // 渠道选择
       region:  [
@@ -101,16 +111,25 @@ export default {
       }
 
   },
+  computed: {
+    modelList() {
+      return this.$store.state.modelList
+    },
+    compareList() {
+      return this.$store.state.compareList
+    }
+  },
    methods: {
       step1() {
         this.active = 1;
       },
       step2() {
-        if (this.modelValue && this.compareValue) {
-         this.active = 2;
-        }else {
-          this.$message.error('请确保您已选择模型和对比组')
-        }
+        this.active = 2;
+        // if (this.modelValue && this.compareValue) {
+         
+        // }else {
+        //   this.$message.error('请确保您已选择模型和对比组')
+        // }
       },
       step3() {
         if (this.value) {
@@ -130,9 +149,9 @@ export default {
 }
 </script>
 <style>
-  .formItem {
+  /* .formItem {
     float: left;
-  }
+  } */
  .tableau {
     width: 100px;
     height: 100px;
