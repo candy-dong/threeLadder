@@ -9,7 +9,7 @@
     <!-- 选择活动 -->
     <div v-if="active === 0" style="padding-top: 30px;">
       <span>请选择活动：</span>
-      <el-select v-model="eventValue" placeholder="请选择">
+      <el-select v-model="eventValue" filterable placeholder="请选择">
         <el-option
           v-for="item in eventOptions"
           :key="item.value"
@@ -21,7 +21,7 @@
     </div>
     <!-- 模型选择 -->
     <div v-if="active === 1" style="padding-top: 30px;">
-       <span>请选择目标变量：</span>
+       <span>选择目标变量：</span>
       <el-select v-model="targetValue" placeholder="请选择">
         <el-option
           v-for="item in targetOptions"
@@ -30,7 +30,7 @@
           :value="item.value">
         </el-option>
       </el-select>
-      <span style="padding-left: 50px;">请选择模型：</span>
+      <span style="padding-left: 50px;">选择模型：</span>
       <el-select v-model="modelValue" placeholder="请选择">
         <el-option
           v-for="item in modelOptions"
@@ -45,7 +45,9 @@
     <!-- 模型建设 -->
     <div v-if="active === 2">
       <h3>KS图：</h3>
-      <img src="../assets/ks.png" width="500" alt="">
+      <div style="display: flex; justify-content: center;">
+        <img src="../assets/ks.png" width="700" alt="">
+      </div>
       <el-table
         stripe border max-height="500"
         :data="tableData"
@@ -58,7 +60,10 @@
             :label="item.label">
           </el-table-column>
       </el-table>
-      <el-button type="primary" plain @click="diolog" style="margin-top:30px">一键生成模型</el-button>
+      <div style="display: flex; justify-content: center;">
+        <el-button type="primary" plain @click="diolog" style="margin-top:30px; width: 180px; height: 50px; font-size: 20px;">一键生成模型</el-button>
+      </div>
+      
     </div>
     <div v-if="active === 3"></div>
 		<!-- 加载中 -->
@@ -96,20 +101,20 @@ export default {
       eventValue: '',
       // 选择目标变量
       targetOptions: [
-        { value: '1', label: '默认', default: true },
+        { value: 'target', label: 'target', default: true },
         { value: '2', label: '变量1' },
         { value: '3', label: '变量2' },
         { value: '4', label: '变量3' }
       ],
-      targetValue: '1',
+      targetValue: 'target',
       // 选择模型
       modelOptions: [
-        { value: '1', label: '模型1' },
+        { value: '1', label: '逻辑回归' },
         { value: '2', label: '模型2' },
         { value: '3', label: '模型3' },
         { value: '4', label: '模型4' }
       ],
-      modelValue: '',
+      modelValue: '1',
       // 模型训练 表格
       tableColum: [{
             value: 'date',
@@ -170,7 +175,11 @@ export default {
 			this.active++;
 			this.loading = true
       setTimeout(() => {
-				// this.loading = false
+        this.loading = false
+        this.$alert('模型已生成成功！', {
+          confirmButtonText: '确定',
+          type: 'success'
+        })
       }, 2000)
     }
   }

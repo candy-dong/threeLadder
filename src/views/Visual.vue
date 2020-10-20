@@ -188,10 +188,11 @@ export default {
       value: '',
       options1: [
         { value: '1', label: '活动跟踪' },
-        { value: '2', label: '活动分析' }
+        { value: '2', label: '活动分析' },
+        { value: '3', label: '外部数据上传' }
       ],
       value1: '',
-      checkList: ['进件量','激活量'],
+      checkList: ['进件量','发卡量'],
       chartData: lineChartData.newVisitis,
       chartData1: lineChartData.purchases,
       zhibiaoSelect: 'newVisitis',
