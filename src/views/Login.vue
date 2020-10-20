@@ -70,21 +70,19 @@ export default {
     background-size: cover;
   }
   .titleLog {
-    color: #ffffff;
-    font-size: 30px;
+    color: #409EFF;
+    padding-bottom: 20px;
+    font-size: 42px;
     font-weight: 700;
-    text-shadow: 0 1px 4px rgba(0,0,0,.2);
-    position: absolute;
-    top: -45%;
-    left: 0;
-    width: 100%;
     text-align: center;
+    font-family: Times, 'New Century Schoolbook', Georgia, 'New York', serif;
+    text-shadow: 1px 1px rgba(197, 223, 248,0.8),2px 2px rgba(197, 223, 248,0.8),3px 3px rgba(197, 223, 248,0.8),4px 4px rgba(197, 223, 248,0.8),5px 5px rgba(197, 223, 248,0.8),6px 6px rgba(197, 223, 248,0.8);
   }
   .login-form {
     border-radius: 6px;
     background-color: #ffffff;
     width: 400px;
-    padding: 60px 25px 20px 25px;
+    padding: 20px 25px 20px 25px;
     position: relative;
   }
   .el-input {

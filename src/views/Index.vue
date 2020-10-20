@@ -1,38 +1,18 @@
 <template>
   <div class="index">
     <div class="mainBox">
-      <!-- <div class="logo marketing" >营销探索</div>
-      <div class="logo visualize" >可视化分析</div>
-      <div class="logo model" >模型建设</div> -->
-      <img src="../assets/louti.png" width="700" alt="">
-      <div @click="handleClick('/marketing')" style="cursor: pointer; position: absolute; left: 50px; bottom: 60px; font-size: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; font-style: italic;">
+      <div @click="handleClick('/marketing')" class="logo marketing">
         <img src="../assets/yingxiao.png" width="100" alt="" style="margin-bottom: 30px;">
-        <span>营销探索</span>
+        <span class = "yxTitle">营销探索</span>
       </div>
-      <div @click="handleClick('/visual')" style="cursor: pointer; position: absolute; left: 250px; bottom: 110px; font-size: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; font-style: italic;">
-        <img src="../assets/keshihua.png" width="120" alt="" style="margin-bottom: 30px;">
-        <span>可视化分析</span>
-      </div>
-      <div @click="handleClick('/model')" style="cursor: pointer; position: absolute; left: 500px; bottom: 160px; font-size: 30px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #fff; font-style: italic;">
+      <div @click="handleClick('/visual')" class="logo visualize">
         <img src="../assets/model.png" width="120" alt="" style="margin-bottom: 30px;">
-        <span>模型建设</span>
+        <span class = "kshTitle">可视化分析</span>
       </div>
-      <!-- <el-button
-        class="btn1"
-        type="success" plain
-        @click="handleClick"
-        >活动跟踪
-      </el-button>
-      <el-button
-        class="btn2"
-        type="warning" plain
-        >智能分析
-      </el-button>
-      <el-button 
-        class="btn3"
-        type="danger" plain
-        >模型建设
-      </el-button> -->
+      <div @click="handleClick('/model')" class="logo model">
+        <img src="../assets/keshihua.png" width="120" alt="" style="margin-bottom: 30px;">
+        <span class = "mxTitle">模型建设</span>
+      </div>
     </div>
   </div>
 </template>
@@ -64,6 +44,8 @@ export default {
     background-size: cover;
   }
   .mainBox {
+    width: 700px;
+    height: 600px;
     position: relative;
     /* overflow: hidden; */
     display: flex;
@@ -94,13 +76,20 @@ export default {
     font-size: 24px;
   }
   .logo {
-    cursor: pointer;
-    width: 80px;
+    width: 98px;
     padding: 5px 10px;
     /* height: 32px; */
-    background-color: aqua;
     text-align: center;
     line-height: 24px;
+  }
+  .logo .yxTitle {
+    color: #fff;
+  }
+  .logo .kshTitle {
+    color: #fff;
+  }
+  .logo .mxTitle {
+    color: #fff;
   }
   .marketing {
     position: absolute;
