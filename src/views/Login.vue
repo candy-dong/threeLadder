@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <img src="../assets/login_background.gif" style="position: absolute; index: -1; width: 100%; height: 100%;" alt="">
     <el-form ref="loginForm" :model="loginForm" class="login-form">
       <h1 class="titleLog">三梯平台</h1>
       <el-form-item prop="username">
@@ -10,7 +11,7 @@
         <el-input v-model="loginForm.password" type="password" auto-complete="off" placeholder="密码" @keyup.enter.native="handleLogin">
         </el-input>
       </el-form-item>
-      <el-form-item style="width;100%; display:flex; justify-content: center;">
+      <el-form-item style="width;100%; display:flex; justify-content: space-between;">
         <el-button
           :loading="loading"
           size="medium"
@@ -66,11 +67,11 @@ export default {
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
-    background-image: url('../assets/background.jpg');
     background-size: cover;
+    position: relative;
   }
   .titleLog {
-    color: #409EFF;
+    color: #ffffff;
     padding-bottom: 20px;
     font-size: 42px;
     font-weight: 700;
@@ -80,7 +81,7 @@ export default {
   }
   .login-form {
     border-radius: 6px;
-    background-color: #ffffff;
+    background-color: rgba(5, 5, 5,0.8);
     width: 400px;
     padding: 20px 25px 20px 25px;
     position: relative;
@@ -90,5 +91,8 @@ export default {
   }
   .el-input input {
     height: 38px;
+  }
+  .el-form-item__content {
+    width: 100%;
   }
 </style>

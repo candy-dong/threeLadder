@@ -1,17 +1,15 @@
 <template>
   <div class="index">
+    <img src="../assets/main_background.gif" class="bgclass" alt="">
     <div class="mainBox">
       <div @click="handleClick('/marketing')" class="logo marketing">
-        <img src="../assets/yingxiao.png" width="100" alt="" style="margin-bottom: 30px;">
-        <span class = "yxTitle">营销探索</span>
+        <img src="../assets/yingxiao.png" width="300" alt="">
       </div>
       <div @click="handleClick('/visual')" class="logo visualize">
-        <img src="../assets/model.png" width="120" alt="" style="margin-bottom: 30px;">
-        <span class = "kshTitle">可视化分析</span>
+        <img src="../assets/model.png" width="300" alt="">
       </div>
       <div @click="handleClick('/model')" class="logo model">
-        <img src="../assets/keshihua.png" width="120" alt="" style="margin-bottom: 30px;">
-        <span class = "mxTitle">模型建设</span>
+        <img src="../assets/keshihua.png" width="300" alt="">
       </div>
     </div>
   </div>
@@ -40,17 +38,23 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('../assets/background2.jpg');
     background-size: cover;
+    position: relative;
   }
   .mainBox {
-    width: 700px;
+    width: 900px;
     height: 600px;
     position: relative;
     /* overflow: hidden; */
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .bgclass {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
   }
   .btn1 {
     position: absolute;
@@ -76,11 +80,9 @@ export default {
     font-size: 24px;
   }
   .logo {
-    width: 98px;
-    padding: 5px 10px;
-    /* height: 32px; */
     text-align: center;
     line-height: 24px;
+    cursor:pointer;
   }
   .logo .yxTitle {
     color: #fff;
