@@ -12,17 +12,16 @@
         </el-input>
       </el-form-item>
       <el-form-item style="width;100%; display:flex; justify-content: space-between;">
-        <el-button
+        <el-button class = "loginBtn"
           :loading="loading"
           size="medium"
           type="primary"
           style="width:120px; margin-right:15px"
           @click.native.prevent="handleLogin"
         >
-          <span v-if="!loading">登 录</span>
-          <span v-else>登 录 中...</span>
+          <span>登 录</span>
         </el-button>
-        <el-button
+        <el-button class = "loginBtn"
           size="medium"
           type="primary"
           style="width:120px; margin-left:15px"
@@ -71,7 +70,7 @@ export default {
     position: relative;
   }
   .titleLog {
-    color: #ffffff;
+    color: #8bc1aa;
     padding-bottom: 20px;
     font-size: 42px;
     font-weight: 700;
@@ -81,11 +80,23 @@ export default {
   }
   .login-form {
     border-radius: 6px;
-    background-color: rgba(5, 5, 5,0.8);
+    color: #000;
+    background-color: rgba(0, 0, 0,0.4);
     width: 400px;
     padding: 20px 25px 20px 25px;
     position: relative;
   }
+  .loginBtn {
+    font-size: 18px;
+    letter-spacing: 4px;
+    background-color: #8bc1aa;
+    border-color: #8bc1aa;
+  }
+  .loginBtn:hover, .loginBtn:active {
+    background: #8bc1aa;
+    border-color: #8bc1aa;
+    color: #FFF;
+}
   .el-input {
     height: 38px;
   }
