@@ -8,11 +8,11 @@
       <el-step title="配置输出  "></el-step>
     </el-steps>
      <el-form ref="form" style="margin-top: 30px">
-        <!-- 逻辑确认 -->
+        <!-- 数据探索 -->
         <el-form-item v-if="active===0">
           <!-- <div class="tableau">tableau页面录屏</div> -->
-          <div style="display: flex; justify-content: center;">
-            <video src="" autoplay controls height="500px" width='800px'></video>
+          <div style="display: flex; justify-content: center; position:relative; top: -15px">
+            <video :src="yingxiao" autoplay="autoplay" style="width: 100%;"></video>
           </div>
         </el-form-item>
         <el-form-item v-if="active===0">
@@ -39,8 +39,9 @@
               :value="item.value"></el-option>
           </el-select>
           <el-button  type="primary" plain @click="step2" style="margin-left: 10px">确 定</el-button>
-          <div style="display: flex; margin-top: 30px;">
-            <img src="../assets/background.jpg" alt="" width="1000" height="500">
+          <div style="display: flex; flex-direction: column; margin-top: 30px;">
+            <img :src="step2img" style="width: 100%;">
+            <img v-if="$store.state.flag" :src="step22img" style="width: 100%;">
           </div>
         </el-form-item>
         <!-- 一键跑批 -->
@@ -55,14 +56,17 @@
           <!-- <el-button  type="primary" plain @click="step2" style="margin-left: 10px">确 定</el-button> -->
         </el-form-item>
         <el-form-item v-if="active===2 && value" style="display: flex; justify-content: center;">
-          <img src="../assets/background.jpg" alt="" width="1000" height="500">
+          <img :src="step31" style="width: 100%;">
+          <img :src="step32" style="width: 100%;">
+          <img :src="step33" style="width: 100%;">
+          <img v-if="$store.state.flag" :src="step34" style="width: 100%;">
           <div style="display: flex; justify-content: flex-end;">
             <el-button  type="primary" plain @click="step3">一键跑批</el-button>
           </div>
         </el-form-item>
         <el-form-item v-if="active===3">
           <div style="display: flex; justify-content: center;">
-            <video src="" autoplay controls height="500px" width='800px'></video>
+            <video src="../assets/shuchu.mp4" autoplay="autoplay" style="width: 100%;"></video>
           </div>
         </el-form-item>
       </el-form>
@@ -79,6 +83,13 @@ export default {
   name: 'Marketing',
   data(){
     return {
+      yingxiao: require('../assets/yingxiao.mp4'),
+      step2img: require('../assets/step2.png'),
+      step22img: require('../assets/step22.png'),
+      step31: require('../assets/step3-1.png'),
+      step32: require('../assets/step3-2.png'),
+      step33: require('../assets/step3-3.png'),
+      step34: require('../assets/step3-4.png'),
        // 模型选择
       // modelList:  [
       //     { value: '0', label: '模型1' },
@@ -158,7 +169,7 @@ export default {
     border: 1px solid red;
  }
  .loading-bg {
-	position: absolute;
+	position: fixed;
 	z-index: 2000;
 	background-color: hsla(0,0%,100%,.75);
 	margin: 0;

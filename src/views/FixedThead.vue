@@ -6,12 +6,11 @@
           <i class="el-icon-menu"></i><i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item><el-checkbox v-model="checkboxVal.A">A</el-checkbox></el-dropdown-item>
-          <el-dropdown-item><el-checkbox v-model="checkboxVal.B">B</el-checkbox></el-dropdown-item>
-          <el-dropdown-item><el-checkbox v-model="checkboxVal.C">C</el-checkbox></el-dropdown-item>
-          <el-dropdown-item><el-checkbox v-model="checkboxVal.D">D</el-checkbox></el-dropdown-item>
-          <el-dropdown-item><el-checkbox v-model="checkboxVal.E">E</el-checkbox></el-dropdown-item>
-          <el-dropdown-item><el-checkbox v-model="checkboxVal.F">F</el-checkbox></el-dropdown-item>
+          <el-dropdown-item><el-checkbox v-model="checkboxVal.user_id">user_id</el-checkbox></el-dropdown-item>
+          <el-dropdown-item><el-checkbox v-model="checkboxVal.imei">imei</el-checkbox></el-dropdown-item>
+          <el-dropdown-item><el-checkbox v-model="checkboxVal.model">model</el-checkbox></el-dropdown-item>
+          <el-dropdown-item><el-checkbox v-model="checkboxVal.open_udid">open_udid</el-checkbox></el-dropdown-item>
+          <el-dropdown-item><el-checkbox v-model="checkboxVal.keychain_uuid">keychain_uuid</el-checkbox></el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -32,7 +31,7 @@
 </template>
 
 <script>
-const defaultFormThead = ['A', 'B', "C", "D", "E", "F"]
+const defaultFormThead = ['user_id', 'imei', "model", "open_udid", "keychain_uuid"]
 
 export default {
   name: 'FixedThead',
@@ -41,33 +40,44 @@ export default {
       radioFlag: '',
       tableData: [
         {
-          A: 'XX', B: 'XX', C: 'XX', D: 'XX', E: 'XX', F: 'XX'
+          user_id: '123121***', imei: 'afj22******83218ask', model: '239f-******-fsad-lf', open_udid: '1290-******-ekff-3o', keychain_uuid: '1092-******-39al-ke'
         },
         {
-          A: 'XX', B: 'XX', C: 'XX', D: 'XX', E: 'XX', F: 'XX'
+          user_id: '980412***', imei: 'f2pos******aj389qcn', model: '2309-******-2980-fo', open_udid: '2309-******-slka-ei', keychain_uuid: '2390-******-f32l-3o'
         },
         {
-          A: 'XX', B: 'XX', C: 'XX', D: 'XX', E: 'XX', F: 'XX'
+          user_id: '391298***', imei: '12091******d389fds2', model: '0923-******-fjas-32', open_udid: '3290-******-na90-3k', keychain_uuid: '290v-******-sdlk-al'
         },
         {
-          A: 'XX', B: 'XX', C: 'XX', D: 'XX', E: 'XX', F: 'XX'
+          user_id: '198233***', imei: '2930d******w2cnaw83', model: '2908-******-klfv-92', open_udid: '2390-******-2398-23', keychain_uuid: '2980-******-90fv-ao'
         },
         {
-          A: 'XX', B: 'XX', C: 'XX', D: 'XX', E: 'XX', F: 'XX'
+          user_id: '290833***', imei: '1209a******qvj32c9f', model: '2039-******-2908-29', open_udid: '2309-******-jiwe-if', keychain_uuid: '2390-******-98vj-as'
         },
         {
-          A: 'XX', B: 'XX', C: 'XX', D: 'XX', E: 'XX', F: 'XX'
+          user_id: '290318***', imei: '12093******f9032esv', model: '2309-******-f230-82', open_udid: '2908-******-f322-08', keychain_uuid: '2093-******-jklf-29'
+        },
+        {
+          user_id: '289391***', imei: '1209d******ealsdw28', model: '2901-******-dkf3-98', open_udid: '0298-******-3fas-kl', keychain_uuid: '2109-******-kjdf-o2'
+        },
+        {
+          user_id: '209382***', imei: '23902******a3908dal', model: '2903-******-kdfi-p1', open_udid: '0293-******-lkf3-89', keychain_uuid: '2309-******-lf23-81'
+        },
+        {
+          user_id: '219309***', imei: '0981f******tfop3a98', model: '2098-******-ldf2-98', open_udid: '2093-******-jf32-08', keychain_uuid: '2908-******-kf32-82'
+        },
+        {
+          user_id: '923192***', imei: '1029t******39023t23', model: '2903-******-klf1-3k', open_udid: '2039-******-slk3-kj', keychain_uuid: '2039-******-lk09-23'
         },
       ],
       key: 1, // table key
-      formTheadOptions: ['A', 'B', "C", "D", "E", "F"],
+      formTheadOptions: ['user_id', 'imei', "model", "open_udid", "keychain_uuid"],
       checkboxVal: {
-        A: true,
-        B: true,
-        C: true,
-        D: true,
-        E: true,
-        F: true
+        user_id: true,
+        imei: true,
+        model: true,
+        open_udid: true,
+        keychain_uuid: true
       }, // checkboxVal
       formThead: defaultFormThead // 默认表头 Default header
     }

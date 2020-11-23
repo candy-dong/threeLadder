@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <img src="../assets/login_background.gif" style="position: absolute; index: -1; width: 100%; height: 100%;" alt="">
+    <img src="../assets/main_background.gif" style="position: absolute; index: -1; width: 100%; height: 100%;left:0;top:0;" alt="">
     <el-form ref="loginForm" :model="loginForm" class="login-form">
       <h1 class="titleLog">三梯平台</h1>
       <el-form-item prop="username">
@@ -70,13 +70,14 @@ export default {
     position: relative;
   }
   .titleLog {
-    color: #8bc1aa;
+    color: #6da5b4;
     padding-bottom: 20px;
     font-size: 42px;
     font-weight: 700;
+    letter-spacing: 10px;
     text-align: center;
     font-family: Times, 'New Century Schoolbook', Georgia, 'New York', serif;
-    text-shadow: 1px 1px rgba(197, 223, 248,0.8),2px 2px rgba(197, 223, 248,0.8),3px 3px rgba(197, 223, 248,0.8),4px 4px rgba(197, 223, 248,0.8),5px 5px rgba(197, 223, 248,0.8),6px 6px rgba(197, 223, 248,0.8);
+    /* text-shadow: 1px 1px rgba(197, 223, 248,0.8),2px 2px rgba(197, 223, 248,0.8),3px 3px rgba(197, 223, 248,0.8),4px 4px rgba(197, 223, 248,0.8),5px 5px rgba(197, 223, 248,0.8),6px 6px rgba(197, 223, 248,0.8); */
   }
   .login-form {
     border-radius: 6px;
@@ -89,12 +90,12 @@ export default {
   .loginBtn {
     font-size: 18px;
     letter-spacing: 4px;
-    background-color: #8bc1aa;
-    border-color: #8bc1aa;
+    background-color: #4d8393;
+    border-color: #4d8393;
   }
   .loginBtn:hover, .loginBtn:active {
-    background: #8bc1aa;
-    border-color: #8bc1aa;
+    background: #4d8393;
+    border-color: #4d8393;
     color: #FFF;
 }
   .el-input {

@@ -3,11 +3,11 @@
     <el-steps :active="active" finish-status="success">
       <el-step title="选择活动"></el-step>
       <el-step :title="step2"></el-step>
-      <el-step :title="step3"></el-step>
+      <el-step :title="step3" v-if="hasStep3"></el-step>
     </el-steps>
     <div v-if="active === 0" style="padding-top: 30px;">
       <span>请选择活动：</span>
-      <el-select v-model="value" placeholder="请选择">
+      <el-select v-model="value" filterable placeholder="请选择">
         <el-option
           v-for="item in options"
           :key="item.value"
@@ -26,18 +26,23 @@
       </el-select>
       <el-button @click="next1" style="margin-left: 50px;">下一步</el-button>
     </div>
-    <div v-if="active === 1 && value1 == '1'" style="padding-top: 50px; display: flex; align-items: center;">
+    <div v-if="active === 1 && value1 == '1'" style="padding-top: 30px; display: flex; align-items: center;">
       <span style="padding-right: 30px;">请选择指标：</span>
       <el-checkbox-group v-model="checkList">
         <el-checkbox label="进件量"></el-checkbox>
         <el-checkbox label="发卡量"></el-checkbox>
         <el-checkbox label="激活量"></el-checkbox>
-        <el-checkbox label="首刷量"></el-checkbox>
+        <el-checkbox label="交易量"></el-checkbox>
       </el-checkbox-group>
       <el-button @click="next2" style="margin-left: 50px;">下一步</el-button>
     </div>
-    <div v-if="active === 1 && value1 == '2'">
-      <h3>外部数据上传</h3>
+    <div v-if="active === 1 && value1 == '2'" style="padding-top: 30px;">
+      <div style="display: flex; justify-content: center;">
+        <video :src="keshihua" autoplay="autoplay" style="width: 100%;"></video>
+      </div>
+    </div>
+    <div v-if="active === 1 && value1 == '3'" style="padding-top: 30px;">
+      <h3 style="margin-top: 0">外部数据上传</h3>
       <el-upload
         class="upload"
         drag
@@ -138,24 +143,24 @@ import chart from './LineChart.vue'
 import FixedThead from './FixedThead.vue'
 const lineChartData = {
   newVisitis: {
-    data: [100, 120, 161, 134, 105, 160, 165],
-    time: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+    data: [3873, 2633, 2668, 2729, 2107, 1911, 2663, 2879, 2893, 2945],
+    time: ['11/1', '11/2', '11/3', '11/4', '11/5', '11/6', '11/7', '11/8', '11/9', '11/10'],
     title: '进件量'
   },
   messages: {
-    data: [200, 192, 120, 144, 160, 130, 140],
-    time: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+    data: [48494, 29877, 28093, 18760, 12098],
+    time: ['银联个普', '水晶蜜卡', '长三角主题', '饿了么卡', '12生肖卡'],
     title: '发卡量'
   },
   purchases: {
-    data: [80, 100, 121, 104, 105, 90, 100],
-    time: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+    data: [9623, 3207],
+    time: ['已激活', '待激活'],
     title: '激活量'
   },
   shoppings: {
     data: [130, 140, 141, 142, 145, 150, 160],
     time: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-    title: '首刷量'
+    title: '交易量'
   },
 }
 export default {
@@ -166,25 +171,12 @@ export default {
   },
   data() {
     return {
+      keshihua: require('../assets/keshihua01.mp4'),
+      indx: 0,
+      hasStep3: true,
       active: 0,
-      // step2: '',
       step2: '',
-      options: [{
-        value: '1',
-        label: '活动1'
-      }, {
-        value: '2',
-        label: '活动2'
-      }, {
-        value: '3',
-        label: '活动3'
-      }, {
-        value: '4',
-        label: '活动4'
-      }, {
-        value: '5',
-        label: '活动5'
-      }],
+      step3: '',
       value: '',
       options1: [
         { value: '1', label: '活动跟踪' },
@@ -192,11 +184,11 @@ export default {
         { value: '3', label: '外部数据上传' }
       ],
       value1: '',
-      checkList: ['进件量','发卡量'],
+      checkList: ['进件量', '发卡量'],
       chartData: lineChartData.newVisitis,
-      chartData1: lineChartData.purchases,
-      zhibiaoSelect: 'messages',
-      zhibiaoSelect1: 'newVisitis',
+      chartData1: lineChartData.messages,
+      zhibiaoSelect: 'newVisitis',
+      zhibiaoSelect1: 'messages',
       optionsZhibiao: [{
         value: 'newVisitis',
         label: '进件量'
@@ -208,7 +200,7 @@ export default {
         label: '激活量'
       }, {
         value: 'shoppings',
-        label: '首刷量'
+        label: '交易量'
       }],
       optionsChart: [{
         value: '线性图',
@@ -245,67 +237,16 @@ export default {
       }],
       chartSelect: '线性图',
       chartSelect1: '柱状图',
-         // 模型训练 表格
-      tableColum: [{
-            value: 'date',
-            label: '日期'
-          },{
-            value: 'name',
-            label: '姓名'
-          },{
-            value: 'sex',
-            label: '性别'
-          },{
-            value: 'age',
-            label: '年龄'
-          },{
-            value: 'remark',
-            label: '职位'
-          },{
-            value: 'address',
-            label: '地址'
-          }],
-      tableData: [{
-            date: '2016-05-02',
-            name: '王小虎',
-            sex: '男',
-            age: '24',
-            remark: '销售员',
-            address: '上海市普陀区金沙江路 1518 弄',
-          }, {
-            date: '2016-05-04',
-            name: '赵明明',
-            sex: '男',
-            age: '35',
-            remark: '经理',
-            address: '上海市普陀区金沙江路 1517 弄'
-          }, {
-            date: '2016-05-01',
-            name: '王凌凌',
-            sex: '女',
-            age: '20',
-            remark: '实习生',
-            address: '上海市普陀区金沙江路 1519 弄'
-          }, {
-            date: '2016-05-03',
-           name: '杨霞',
-            sex: '女',
-            age: '42',
-            remark: '总监',
-            address: '上海市普陀区金沙江路 1516 弄'
-          }, {
-            date: '2016-05-23',
-           name: '朱三',
-            sex: '男',
-            age: '36',
-            remark: '总经理',
-            address: '上海市普陀区金沙江路 1534 弄'
-          }],
-          fileList: [],
-          radio: 0,
-          open: false,
-          checked: true,
-          tableFlag: false
+      fileList: [],
+      radio: 0,
+      open: false,
+      checked: true,
+      tableFlag: false
+    }
+  },
+  computed: {
+    options(){
+      return this.$store.state.options
     }
   },
   methods: {
@@ -313,8 +254,12 @@ export default {
       if (this.value && this.value1) {
         if (this.value1 === '1') {
           this.step2 = '选择指标'
+        } else if(this.value1 === '2') {
+          this.hasStep3 = false
+          this.step2 = '活动分析'
         } else {
-          this.step2 = '选择指标'
+          this.hasStep3 = false
+          this.step2 = '外部数据上传'
         }
         this.active++
       } else {
@@ -333,10 +278,7 @@ export default {
     },
     handleError(err, file, fileList) {
       setTimeout(() => {
-        this.fileList = [{
-        name: 'demo.xlsx',
-        url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
-      }, {
+        this.fileList = [ {
         name: 'demo.txt',
         url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
       }]
@@ -365,7 +307,15 @@ export default {
             message: '已取消上传'
           });          
         });
-    }
+    },
+    // endedHandle(index) {
+    //   if (index == 1) {
+    //     this.keshihua = keshihua02
+    //   } else if (index == 2) {
+    //     this.keshihua = keshihua03
+    //   }
+    //   this.indx = index
+    // }
   }
 }
 </script>

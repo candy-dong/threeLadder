@@ -43,13 +43,13 @@
       <el-button  @click="next2" style="margin-left: 50px;">下一步</el-button>
     </div>
     <!-- 模型建设 -->
-    <div v-if="active === 2">
-      <h3>KS图：</h3>
+    <div v-if="active === 2"  style="padding-top: 30px;">
+      <h3 style="margin-top: 0">KS图：</h3>
       <div style="display: flex; justify-content: center;">
-        <img src="../assets/ks.png" width="700" alt="">
+        <img src="../assets/ks.png" alt="ks图" style="width: 500px;height:auto">
       </div>
       <el-table
-        stripe border max-height="500"
+        stripe border
         :data="tableData"
         style="width: 100%"
         @row-click="rowClick">
@@ -65,7 +65,7 @@
       </div>
       
     </div>
-    <div v-if="active === 3"></div>
+    <div v-if="active === 3"  style="padding-top: 30px;"></div>
 		<!-- 加载中 -->
 		<div class="loading-bg" v-if="loading"><div class="loading-spinner">
 			<img src="../assets/loading.gif" alt="正在加载" class="loading-img">	
@@ -84,65 +84,100 @@ export default {
       // 选择活动
       eventOptions: [{
         value: '1',
-        label: '活动1'
+        label: '12生肖促办卡'
       }, {
         value: '2',
-        label: '活动2'
+        label: '互联网新户获客'
       }, {
         value: '3',
-        label: '活动3'
+        label: '最红星期五预热'
       }, {
         value: '4',
-        label: '活动4'
+        label: '他行户获客促动'
       }, {
         value: '5',
-        label: '活动5'
+        label: 'MGM推荐办卡'
+      }, {
+        value: '6',
+        label: '分行发卡营销'
+      }, {
+        value: '7',
+        label: '预先反销卡活动'
       }],
-      eventValue: '',
+      eventValue: '1',
       // 选择目标变量
       targetOptions: [
-        { value: 'target', label: 'target', default: true },
-        { value: '2', label: '变量1' },
-        { value: '3', label: '变量2' },
-        { value: '4', label: '变量3' }
+        { value: '1', label: 'target', default: true },
+        { value: '2', label: '进件' },
+        { value: '3', label: '发卡' },
+        { value: '4', label: '激活' },
+        { value: '5', label: '交易' }
       ],
-      targetValue: 'target',
+      targetValue: '1',
       // 选择模型
       modelOptions: [
         { value: '1', label: '逻辑回归' },
-        { value: '2', label: '模型2' },
-        { value: '3', label: '模型3' },
-        { value: '4', label: '模型4' }
+        { value: '2', label: '线性回归' },
+        { value: '3', label: '随机森林' },
+        { value: '4', label: '支持向量机'},
+        { value: '5', label: '神经网络'},
+        { value: '6', label: 'LGB'},
+        { value: '7', label: 'XGB'}
       ],
       modelValue: '1',
       // 模型训练 表格
       tableColum: [{
             value: 'date',
-            label: '日期'
+            label: '影响因素'
           },{
             value: 'name',
-            label: '姓名'
-          },{
-            value: 'address',
-            label: '地址'
+            label: 'IV值'
           }],
       tableData: [{
-            date: '2016-05-02',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄',
+            date: '近3个月买单吧APP登陆天数最大值',
+            name: '1.358985',
+            data: '客户加办卡概率随近3个月买单吧APP登陆天数最大值的增加而增加',
           }, {
-            date: '2016-05-04',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1517 弄'
+            date: '近三个月消息记录平均打开天数',
+            name: '1.217111',
+            data: '客户加办卡概率随近三个月消息记录平均打开天数的增加而增加'
           }, {
-            date: '2016-05-01',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1519 弄'
+            date: '最近1个月打开买单吧APP天数',
+            name: '1.067857',
+            data: '客户加办卡概率随最近1个月打开买单吧APP天数的增加而减少'
           }, {
-            date: '2016-05-03',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1516 弄'
-					}],
+            date: '最近活户月距今月数',
+            name: '0.990223',
+            data: '客户加办卡概率随最近活户月距今月数的增加而增加'
+					}, {
+            date: '最近6个月积分奖励次数',
+            name: '0.872185',
+            data: '客户加办卡概率随最近6个月积分奖励次数的增加而增加'
+          }, {
+            date: '最近3个月消费次数',
+            name: '0.864489',
+            data: '客户加办卡概率随最近3个月消费次数的增加而增加'
+          }, {
+            date: '历史共绑卡数',
+            name: '0.795255',
+            data: '客户加办卡概率随历史共绑卡数的增加而增加'
+          }, {
+            date: '最近1个月还款金额/最近3个月平均还款金额',
+            name: '0.785706',
+            data: '客户加办卡概率随最近1个月还款金额/最近3个月平均还款金额的增加而增加'
+          }, {
+            date: 'APPSESSION次数',
+            name: '0.761118',
+            data: '客户加办卡概率随近APPSESSION次数的增加而增加'
+          }, {
+            date: '当月总额度使用率',
+            name: '0.745075',
+            data: '客户加办卡概率随当月总额度使用率的增加而增加'
+          }, {
+            date: '最近6个月所有类型活动达标次数',
+            name: '0.738304',
+            data: '客户加办卡概率随最近6个月所有类型活动达标次数的增加而增加'
+          }],
 					loading: false
     }
   },
@@ -167,7 +202,7 @@ export default {
     },
     //点击某一行
     rowClick(row, column, event) {
-        this.$alert(row.name, {
+        this.$alert(row.data, {
           confirmButtonText: '确定',
         });
     },
@@ -180,6 +215,8 @@ export default {
           confirmButtonText: '确定',
           type: 'success'
         })
+        this.$store.commit('setModel')
+        this.$store.commit('setCompare')
       }, 2000)
     }
   }
@@ -193,7 +230,7 @@ export default {
   border: 1px solid red;
 }
 .loading-bg {
-	position: absolute;
+	position: fixed;
 	z-index: 2000;
 	background-color: hsla(0,0%,100%,.75);
 	margin: 0;

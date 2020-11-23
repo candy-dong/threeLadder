@@ -2,14 +2,14 @@
   <div class="index">
     <img src="../assets/main_background.gif" class="bgclass" alt="">
     <div class="mainBox">
+      <div @click="handleClick('/visual')" class="logo model">
+        <img src="../assets/keshihua.png" width="400" alt="">
+      </div>
+      <div @click="handleClick('/model')" class="logo visualize">
+        <img src="../assets/model.png" width="400" alt="">
+      </div>
       <div @click="handleClick('/marketing')" class="logo marketing">
-        <img src="../assets/yingxiao.png" width="300" alt="">
-      </div>
-      <div @click="handleClick('/visual')" class="logo visualize">
-        <img src="../assets/model.png" width="300" alt="">
-      </div>
-      <div @click="handleClick('/model')" class="logo model">
-        <img src="../assets/keshihua.png" width="300" alt="">
+        <img src="../assets/yingxiao.png" width="400" alt="">
       </div>
     </div>
   </div>
@@ -42,8 +42,8 @@ export default {
     position: relative;
   }
   .mainBox {
-    width: 900px;
-    height: 600px;
+    width: 1200px;
+    height: 700px;
     position: relative;
     /* overflow: hidden; */
     display: flex;
@@ -55,6 +55,8 @@ export default {
     z-index: -1;
     width: 100%;
     height: 100%;
+    left:0;
+    top:0;
   }
   .btn1 {
     position: absolute;
@@ -93,18 +95,18 @@ export default {
   .logo .mxTitle {
     color: #fff;
   }
-  .marketing {
+  .model {
     position: absolute;
     left: 50%;
     top: 0;
     transform: translateX(-50%);
   }
-  .visualize {
+  .marketing {
     position: absolute;
     left: 0;
     bottom: 0;
   }
-  .model {
+  .visualize {
     position: absolute;
     right: 0;
     bottom: 0;
