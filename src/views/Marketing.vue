@@ -5,15 +5,13 @@
       <el-step title="数据探索"></el-step>
       <el-step title="逻辑确认"></el-step>
       <el-step title="一键跑批"></el-step>
-      <el-step title="配置输出  "></el-step>
+      <el-step title="配置输出"></el-step>
     </el-steps>
      <el-form ref="form" style="margin-top: 30px">
         <!-- 数据探索 -->
         <el-form-item v-if="active===0">
           <!-- <div class="tableau">tableau页面录屏</div> -->
-          <div style="display: flex; justify-content: center; position:relative; top: -15px">
-            <video :src="yingxiao" autoplay="autoplay" style="width: 100%;"></video>
-          </div>
+          <shujutansuo></shujutansuo>
         </el-form-item>
         <el-form-item v-if="active===0">
           <div style="display: flex; justify-content: center;">
@@ -21,7 +19,7 @@
           </div>
         </el-form-item>
         <!-- 渠道选择 -->
-        <el-form-item  v-if="active===1" style="display: flex; justify-content: center;">
+        <el-form-item  v-if="active===1">
           <span>模型选择：</span>
           <el-select v-model="modelValue" placeholder="请选择模型">
             <el-option
@@ -39,10 +37,7 @@
               :value="item.value"></el-option>
           </el-select>
           <el-button  type="primary" plain @click="step2" style="margin-left: 10px">确 定</el-button>
-          <div style="display: flex; flex-direction: column; margin-top: 30px;">
-            <img :src="step2img" style="width: 100%;">
-            <img v-if="$store.state.flag" :src="step22img" style="width: 100%;">
-          </div>
+          <luojiqueren></luojiqueren>
         </el-form-item>
         <!-- 一键跑批 -->
         <el-form-item  v-if="active===2" label="渠道选择">
@@ -65,9 +60,7 @@
           </div>
         </el-form-item>
         <el-form-item v-if="active===3">
-          <div style="display: flex; justify-content: center;">
-            <video src="../assets/shuchu.mp4" autoplay="autoplay" style="width: 100%;"></video>
-          </div>
+          <peizhishuchu></peizhishuchu>
         </el-form-item>
       </el-form>
     <div class="clear"></div>
@@ -79,8 +72,16 @@
 </template>
 
 <script>
+import shujutansuo from './shujutansuo'
+import luojiqueren from './luojiqueren'
+import peizhishuchu from './peizhishuchu'
 export default {
   name: 'Marketing',
+  components: {
+    shujutansuo,
+    luojiqueren,
+    peizhishuchu
+  },
   data(){
     return {
       yingxiao: require('../assets/yingxiao.mp4'),

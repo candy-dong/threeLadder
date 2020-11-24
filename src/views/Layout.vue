@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <el-container>
-      <el-header>
+      <el-header style="position:fixed; top: 0; left: 0; right: 0; height:60px; z-index: 10;">
         <el-menu
           :default-active="activeIndex"
           class="el-menu-demo"
@@ -16,7 +16,7 @@
           <el-menu-item index="/model">模型建设</el-menu-item>
         </el-menu>
       </el-header>
-      <el-main>
+      <el-main style="margin-top: 60px;">
         <router-view></router-view>
       </el-main>
     </el-container>
