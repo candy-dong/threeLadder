@@ -51,13 +51,7 @@
           <!-- <el-button  type="primary" plain @click="step2" style="margin-left: 10px">确 定</el-button> -->
         </el-form-item>
         <el-form-item v-if="active===2 && value" style="display: flex; justify-content: center;">
-          <img :src="step31" style="width: 100%;">
-          <img :src="step32" style="width: 100%;">
-          <img :src="step33" style="width: 100%;">
-          <img v-if="$store.state.flag" :src="step34" style="width: 100%;">
-          <div style="display: flex; justify-content: flex-end;">
-            <el-button  type="primary" plain @click="step3">一键跑批</el-button>
-          </div>
+          <yijianpaopi @handle="step3"></yijianpaopi>
         </el-form-item>
         <el-form-item v-if="active===3">
           <peizhishuchu></peizhishuchu>
@@ -75,22 +69,20 @@
 import shujutansuo from './shujutansuo'
 import luojiqueren from './luojiqueren'
 import peizhishuchu from './peizhishuchu'
+import yijianpaopi from './yijianpaopi'
 export default {
   name: 'Marketing',
   components: {
     shujutansuo,
     luojiqueren,
-    peizhishuchu
+    peizhishuchu,
+    yijianpaopi
   },
   data(){
     return {
       yingxiao: require('../assets/yingxiao.mp4'),
       step2img: require('../assets/step2.png'),
       step22img: require('../assets/step22.png'),
-      step31: require('../assets/step3-1.png'),
-      step32: require('../assets/step3-2.png'),
-      step33: require('../assets/step3-3.png'),
-      step34: require('../assets/step3-4.png'),
        // 模型选择
       // modelList:  [
       //     { value: '0', label: '模型1' },
