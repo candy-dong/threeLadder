@@ -50,7 +50,7 @@
           </el-select>
           <!-- <el-button  type="primary" plain @click="step2" style="margin-left: 10px">确 定</el-button> -->
         </el-form-item>
-        <el-form-item v-if="active===2 && value" style="display: flex; justify-content: center;">
+        <el-form-item v-if="active===2 && value">
           <yijianpaopi @handle="step3"></yijianpaopi>
         </el-form-item>
         <el-form-item v-if="active===3">
