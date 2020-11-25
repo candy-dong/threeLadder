@@ -108,11 +108,11 @@
     </el-table-column>
     <el-table-column
       label="操作"
-      width="186px">
+      width="260px">
       <template slot-scope="scope">
         <el-button type="primary" @click="handleClick(scope.row)" size="small">WHERE预览</el-button>
         <el-button type="danger" size="small">删除</el-button>
-        <el-button @click="handleClick(scope.row)" size="small" style="margin-top: 5px; display:block; float:right;">提示</el-button>
+        <el-button type="success" @click="handleClick(scope.row)" size="small">提示</el-button>
         <!-- <el-button type="text" size="small">编辑</el-button> -->
       </template>
     </el-table-column>
