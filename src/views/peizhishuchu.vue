@@ -243,9 +243,11 @@ export default {
         console.log(row);
       },
        onSubmit() {
-         this.$alert('操作成功', '提示', {
+        this.$alert('操作成功', '提示', {
           confirmButtonText: '确定',
-        });
+        }).then(() => {
+          this.$router.push('/index')
+        })
       }
 
   },

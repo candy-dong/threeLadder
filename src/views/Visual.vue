@@ -37,9 +37,7 @@
       <el-button @click="next2" style="margin-left: 50px;">下一步</el-button>
     </div>
     <div v-if="active === 1 && value1 == '2'" style="padding-top: 30px;">
-      <div style="display: flex; justify-content: center;">
-        <video :src="keshihua" autoplay="autoplay" style="width: 100%;"></video>
-      </div>
+      <huodongfenxi></huodongfenxi>
     </div>
     <div v-if="active === 1 && value1 == '3'" style="padding-top: 30px;">
       <h3 style="margin-top: 0">外部数据上传</h3>
@@ -141,6 +139,7 @@
 <script>
 import chart from './LineChart.vue'
 import FixedThead from './FixedThead.vue'
+import huodongfenxi from './huodongfenxi'
 const lineChartData = {
   newVisitis: {
     data: [3873, 2633, 2668, 2729, 2107, 1911, 2663, 2879, 2893, 2945],
@@ -167,7 +166,7 @@ export default {
   name: 'Visual',
   components: {
     chart,
-    FixedThead
+    FixedThead,huodongfenxi
   },
   data() {
     return {

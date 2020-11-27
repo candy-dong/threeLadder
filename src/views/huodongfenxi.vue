@@ -101,12 +101,12 @@
 </template>
 
 <script>
-import tabledata from './index'
+import tabledata from './index2'
 import draggable from 'vuedraggable'
 import Chart from './Chart'
 let idGlobal = 30
 export default {
-  name: 'shujutansuo',
+  name: 'huodongfenxi',
   components: {
     draggable,
     Chart
