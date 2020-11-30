@@ -153,8 +153,8 @@ export default {
       step33: require('../assets/step3-3.png'),
       step34: require('../assets/step3-4.png'),
       tableData: [{
-        date: '941',
-        city: '进件类型',
+        date: '869',
+        city: '是否最新新户标识（含销户六个月）',
         address: 'VARCHAR(1)',
         options,
         value1,
@@ -164,7 +164,7 @@ export default {
         input,
         filterOptions
       }, {
-        date: '28',
+        date: '675',
         city: '发卡渠道大类',
         address: 'VARCHAR(1)',
         options,
@@ -176,8 +176,8 @@ export default {
         filterOptions
       }],
       tableDataCopy: [{
-        date: '941',
-        city: '进件类型',
+        date: '869',
+        city: '是否最新新户标识（含销户六个月）',
         address: 'VARCHAR(1)',
         options,
         value1,
@@ -187,7 +187,7 @@ export default {
         input,
         filterOptions
       }, {
-        date: '28',
+        date: '675',
         city: '发卡渠道大类',
         address: 'VARCHAR(1)',
         options,
@@ -244,7 +244,7 @@ export default {
         filterOptions
       }],
       pushData: [{
-        date: '941',
+        date: '69',
         city: '是否可推送',
         address: 'VARCHAR(1)',
         options,
@@ -255,7 +255,7 @@ export default {
         input,
         filterOptions
       }, {
-        date: '28',
+        date: '1018',
         city: '买单吧注销用户',
         address: 'VARCHAR(1)',
         options,

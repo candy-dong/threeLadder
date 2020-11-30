@@ -150,8 +150,8 @@ let checked = true,
           input,
           filterOptions
         }, {
-          date: '941',
-          city: '进件类型',
+          date: '869',
+          city: '是否最新新户标识（含销户六个月）',
           address: 'VARCHAR(1)',
           options,
           value1,
@@ -161,7 +161,7 @@ let checked = true,
           input,
           filterOptions
         }, {
-          date: '28',
+          date: '675',
           city: '发卡渠道大类',
           address: 'VARCHAR(1)',
           options,

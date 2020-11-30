@@ -288,10 +288,10 @@ export default {
         isSort,
         remark
       }, {
-        zbId: '2',
-        zbBh: 'CSRA0002',
+        zbId: '23',
+        zbBh: 'CSRC0007',
         city: '开户日期',
-        fieldName: 'mob_phe_nbr',
+        fieldName: 'ope_dte_csr',
         address: 'DATE',
         options,
         value1,
@@ -307,10 +307,10 @@ export default {
         isSort,
         remark
       },{
-        zbId: '941',
-        zbBh: 'CSRA0007',
-        city: '进件类型',
-        fieldName: 'csr_rfe_nbr_txt',
+        zbId: '869',
+        zbBh: 'SLTB0015',
+        city: '是否最新新户标识（含销户六个月）',
+        fieldName: 'slf_if_newest-new_act_ind',
         address: 'BIGINT',
         options,
         value1,
@@ -326,10 +326,10 @@ export default {
         isSort,
         remark
       }, {
-        zbId: '28',
+        zbId: '675',
         zbBh: 'CSRA0008',
         city: '发卡渠道大类',
-        fieldName: 'mob_phe_nbr',
+        fieldName: 'slt_ise_cnl_scf_des',
         address: 'DATE',
         options,
         value1,
@@ -349,7 +349,7 @@ export default {
         zbId: '4',
         zbBh: 'CSRA0004',
         city: '近30天消费笔数',
-        fieldName: 'csr_rfe_nbr_txt',
+        fieldName: 'cnt_lst_90',
         address: 'BIGINT',
         options,
         value1,
@@ -365,10 +365,10 @@ export default {
         isSort,
         remark
       }, {
-        zbId: '2',
-        zbBh: 'CSRA0002',
+        zbId: '23',
+        zbBh: 'CSRC0007',
         city: '开户日期',
-        fieldName: 'mob_phe_nbr',
+        fieldName: 'ope_dte_csr',
         address: 'DATE',
         options,
         value1,
@@ -384,10 +384,10 @@ export default {
         isSort,
         remark
       },{
-        zbId: '941',
-        zbBh: 'CSRA0007',
-        city: '进件类型',
-        fieldName: 'csr_rfe_nbr_txt',
+        zbId: '869',
+        zbBh: 'SLTB0015',
+        city: '是否最新新户标识（含销户六个月）',
+        fieldName: 'slf_if_newest-new_act_ind',
         address: 'BIGINT',
         options,
         value1,
@@ -403,10 +403,10 @@ export default {
         isSort,
         remark
       }, {
-        zbId: '28',
+        zbId: '675',
         zbBh: 'CSRA0008',
         city: '发卡渠道大类',
-        fieldName: 'mob_phe_nbr',
+        fieldName: 'slt_ise_cnl_scf_des',
         address: 'DATE',
         options,
         value1,
@@ -424,7 +424,7 @@ export default {
       }],
       duanxinData: [{
         zbId: '47',
-        zbBh: 'CSRA0009',
+        zbBh: 'CSRE0008',
         city: '常规性沟通屏蔽客户（顶层）',
         fieldName: 'com_blk_top_ind',
         address: 'BIGINT',
@@ -443,7 +443,7 @@ export default {
         remark
       }, {
         zbId: '48',
-        zbBh: 'CSRA0010',
+        zbBh: 'CSRE0009',
         city: '常规性沟通屏蔽客户（入账层）',
         fieldName: 'com_blk_ptg_ind',
         address: 'DATE',
@@ -462,7 +462,7 @@ export default {
         remark
       },{
         zbId: '49',
-        zbBh: 'CSRA0011',
+        zbBh: 'CSRE0010',
         city: '电话错误客户',
         fieldName: 'non_tel_csr_ind',
         address: 'BIGINT',
@@ -481,7 +481,7 @@ export default {
         remark
       }, {
         zbId: '50',
-        zbBh: 'CSRA0012',
+        zbBh: 'CSRE0011',
         city: '短信屏蔽客户',
         fieldName: 'non_sms_csr_ind',
         address: 'DATE',
@@ -501,7 +501,7 @@ export default {
       }],
       pushData: [{
         zbId: '69',
-        zbBh: 'CSRA0005',
+        zbBh: 'MDBA0003',
         city: '是否可推送',
         fieldName: 'psh_wht_usr',
         address: 'BIGINT',
@@ -520,9 +520,9 @@ export default {
         remark
       }, {
         zbId: '1018',
-        zbBh: 'CSRA0006',
+        zbBh: 'MDBE00001',
         city: '买单吧注销用户',
-        fieldName: 'mob_phe_nbr',
+        fieldName: 'mdb_ccl_ind',
         address: 'DATE',
         options,
         value1,
