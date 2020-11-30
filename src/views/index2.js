@@ -1,21 +1,41 @@
-const jxtyfsl = [
-    {jxtyf: '202007', sl: '32523'},
-    {jxtyf: '202008', sl: '33912'},
-    {jxtyf: '202009', sl: '47871'},
-    {jxtyf: '202010', sl: '73961'},
+const jxtyf = [
+    {jxtyf: '202007'},
+    {jxtyf: '202008'},
+    {jxtyf: '202009'},
+    {jxtyf: '202010'},
 ]
-const jxtyfjjlxsl = [
-    {jxtyf: '202007', jjlx: '换卡面卡', sl: '11'},
-    {jxtyf: '202007', jjlx: '加办卡', sl: '4603'},
-    {jxtyf: '202007', jjlx: '新办卡', sl: '27909'},
-    {jxtyf: '202008', jjlx: '换卡面卡', sl: '4'},
-    {jxtyf: '202008', jjlx: '加办卡', sl: '2326'},
-    {jxtyf: '202008', jjlx: '新办卡', sl: '31582'},
-    {jxtyf: '202009', jjlx: '换卡面卡', sl: '2'},
-    {jxtyf: '202009', jjlx: '加办卡', sl: '2776'},
-    {jxtyf: '202009', jjlx: '新办卡', sl: '45093'},
-    {jxtyf: '202010', jjlx: '加办卡', sl: '2963'},
-    {jxtyf: '202010', jjlx: '新办卡', sl: '70998'},
+
+const jxtyfjjlx = [
+    {jxtyf: '202007', jjlx: '换卡面卡'},
+    {jxtyf: '202007', jjlx: '加办卡'},
+    {jxtyf: '202007', jjlx: '新办卡'},
+    {jxtyf: '202008', jjlx: '换卡面卡'},
+    {jxtyf: '202008', jjlx: '加办卡'},
+    {jxtyf: '202008', jjlx: '新办卡'},
+    {jxtyf: '202009', jjlx: '换卡面卡'},
+    {jxtyf: '202009', jjlx: '加办卡'},
+    {jxtyf: '202009', jjlx: '新办卡'},
+    {jxtyf: '202010', jjlx: '加办卡'},
+    {jxtyf: '202010', jjlx: '新办卡'},
+]
+const jxtyffkl = [
+    {jxtyf: '202007', fkl: '12226'},
+    {jxtyf: '202008', fkl: '9903'},
+    {jxtyf: '202009', fkl: '12155'},
+    {jxtyf: '202010', fkl: '13211'},
+]
+const jxtyfjjlxfkl = [
+    {jxtyf: '202007', jjlx: '换卡面卡', fkl: '11'},
+    {jxtyf: '202007', jjlx: '加办卡', fkl: '3418'},
+    {jxtyf: '202007', jjlx: '新办卡', fkl: '8797'},
+    {jxtyf: '202008', jjlx: '换卡面卡', fkl: '4'},
+    {jxtyf: '202008', jjlx: '加办卡', fkl: '1799'},
+    {jxtyf: '202008', jjlx: '新办卡', fkl: '8100'},
+    {jxtyf: '202009', jjlx: '换卡面卡', fkl: '2'},
+    {jxtyf: '202009', jjlx: '加办卡', fkl: '2131'},
+    {jxtyf: '202009', jjlx: '新办卡', fkl: '10022'},
+    {jxtyf: '202010', jjlx: '加办卡', fkl: '2164'},
+    {jxtyf: '202010', jjlx: '新办卡', fkl: '11047'},
 ]
 const jxtyfjjlxzzspjgsl = [
     {jxtyf: '202007', jjlx: '换卡面卡', zzspjg: '批核', sl: '11'},
@@ -160,12 +180,15 @@ const xlkdjkhs = [
 ]
 
 export default {
+    jxtyf: jxtyf,
+    jxtyfjjlx: jxtyfjjlx,
+    jjlxjxtyf: jxtyfjjlx,
     xlkhs,
     kdjxlkhs: xlkdjkhs,
     xlkdjkhs: xlkdjkhs,
-    jxtyfsl,
-    jxtyfjjlxsl: jxtyfjjlxsl,
-    jjlxjxtyfsl: jxtyfjjlxsl,
+    jxtyffkl,
+    jxtyfjjlxfkl: jxtyfjjlxfkl,
+    jjlxjxtyffkl: jxtyfjjlxfkl,
     jxtyfjjlxzzspjgsl: jxtyfjjlxzzspjgsl,
     jxtyfzzspjgjjlxsl: jxtyfjjlxzzspjgsl,
     jjlxjxtyfzzspjgsl: jxtyfjjlxzzspjgsl,

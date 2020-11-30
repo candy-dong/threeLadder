@@ -14,9 +14,8 @@
         </div>
         <draggable
           class="draggable"
-          v-model="weidu"
-          :clone="cloneWd"
-          :group="{ name: 'weidu', pull: 'clone', put: false }"
+          :list="weidu"
+          group="people"
           @change="logWd"
         >
           <span class="list-group-item" v-for="element in weidu" :key="element.id">
@@ -35,9 +34,8 @@
           </span>
           <draggable
             class="draggable"
-            v-model="duliang"
-            :clone="cloneDl"
-            :group="{ name: 'duliang', pull: 'clone', put: false }"
+            :list="duliang"
+            group="people"
             @change="logDl"
           >
             <div class="list-group-item" v-for="element in duliang" :key="element.id">
@@ -52,11 +50,11 @@
           <draggable
             class="dragArea list-group"
             :list="lie"
-            group="duliang"
+            group="people"
             @change="log"
           >
             <div class="list-group-item" style="margin-right: 10px;" v-for="element in lie" :key="element.id">
-              {{ element.name }} <i class="el-icon-close" style="padding-right: 8px;" @click="lieClose(element.id)"></i>
+              {{ element.name }}
             </div>
           </draggable>
         </div>
@@ -65,11 +63,11 @@
           <draggable
             class="dragArea list-group"
             :list="hang"
-            group="weidu"
+            group="people"
             @change="log"
           >
             <div class="list-group-item" style="margin-right: 10px;" v-for="element in hang" :key="element.id">
-              {{ element.name }} <i class="el-icon-close" style="padding-right: 8px;" @click="hangClose(element.id)"></i>
+              {{ element.name }}
             </div>
           </draggable>
         </div>
@@ -104,9 +102,9 @@
 import tabledata from './index'
 import draggable from 'vuedraggable'
 import Chart from './Chart'
-let idGlobal = 30
+let idGlobal = 50
 export default {
-  name: 'shujutansuo',
+  name: 'huodongfenxi',
   components: {
     draggable,
     Chart
@@ -114,26 +112,30 @@ export default {
   data() {
     return {
       weidu: [
-        {name: '学历', id: 1, value: 'xl'},
-        {name: '卡等级', id: 2, value: 'kdj'},
-        {name: '客户价值', id: 3, value: 'khjz'},
         {name: '进系统月份', id: 22, value: 'jxtyf'},
+        {name: '发卡渠道小类', id: 25, value: 'fkqdxl'},
+        {name: '发卡渠道大类', id: 26, value: 'fkqddl'},
+        {name: '是否秒批', id: 27, value: 'sfmp'},
+        {name: '卡等级', id: 2, value: 'kdj'},
+        {name: '卡风格', id: 28, value: 'kfg'},
+        {name: '直属分行', id: 30, value: 'zsfh'},
+        {name: '卡片状态', id: 31, value: 'kpzt'},
+        {name: '活动达标', id: 32, value: 'hddb'},
         {name: '进件类型', id: 23, value: 'jjlx'},
-        {name: '最终审批结果', id: 24, value: 'zzspjg'},
-        {name: '首次开卡卡片发卡城市', id: 4, value: 'sckkkpfkcs'},
-        {name: '最近开卡直属分行', id: 5, value: 'zjkkzsfh'},
-        {name: '客户常驻城市', id: 6, value: 'khczcs'},
-        {name: '已持有在册卡数量', id: 7, value: 'ycyzcksl'},
-        {name: '是否三个月活户', id: 8, value: 'sfsgyhh'},
-        {name: '客户餐饮品牌偏好', id: 9, value: 'khcyppph'},
-        {name: '当前是否订购用卡无忧', id: 10, value: 'dqsfdgykwy'},
       ],
       weiduList: [
-        {name: '学历', id: 1, value: 'xl'},
-        {name: '卡等级', id: 2, value: 'kdj'},
-        {name: '客户价值', id: 3, value: 'khjz'},
         {name: '进系统月份', id: 22, value: 'jxtyf'},
+        {name: '发卡渠道小类', id: 25, value: 'fkqdxl'},
+        {name: '发卡渠道大类', id: 26, value: 'fkqddl'},
+        {name: '是否秒批', id: 27, value: 'sfmp'},
+        {name: '卡等级', id: 2, value: 'kdj'},
+        {name: '卡风格', id: 28, value: 'kfg'},
+        {name: '直属分行', id: 30, value: 'zsfh'},
+        {name: '卡片状态', id: 31, value: 'kpzt'},
+        {name: '活动达标', id: 32, value: 'hddb'},
         {name: '进件类型', id: 23, value: 'jjlx'},
+        {name: '学历', id: 1, value: 'xl'},
+        {name: '客户价值', id: 3, value: 'khjz'},
         {name: '最终审批结果', id: 24, value: 'zzspjg'},
         {name: '首次开卡卡片发卡城市', id: 4, value: 'sckkkpfkcs'},
         {name: '最近开卡直属分行', id: 5, value: 'zjkkzsfh'},
@@ -149,22 +151,22 @@ export default {
         {name: '纯EMV卡客户', id: 15, value: 'cemvkkh'}
       ],
       duliang: [
-        {name: '数量', id: 22, value: 'sl'},
-        {name: '客户数', id: 16, value: 'khs'},
-        {name: '近30天消费笔数', id: 17,value: 'j30txfbs'},
-        {name: '近30天消费金额', id: 18, value: 'j30txfje'},
-        {name: '近90天消费笔数', id: 19, value: 'j90txfbs'},
-        {name: '近90天消费金额', id: 20, value: 'j90txfje'},
-        {name: '可用积分_标准积分账户', id: 21, value: 'kyjf'},
+        {name: '发卡量', id: 35, value: 'fkl'},
+        {name: '18天消费笔数', id: 16, value: '18txfbs'},
+        {name: '18天消费金额', id: 17,value: '18txfje'},
+        {name: '45天消费笔数', id: 18, value: '45txfbs'},
+        {name: '45天消费金额', id: 19, value: '45txfje'},
+        {name: '90天消费笔数', id: 20, value: '90txfbs'},
+        {name: '90天消费金额', id: 21, value: '90txfje'},
       ],
       duliangList: [
-        {name: '数量', id: 22, value: 'sl'},
-        {name: '客户数', id: 16, value: 'khs'},
-        {name: '近30天消费笔数', id: 17,value: 'j30txfbs'},
-        {name: '近30天消费金额', id: 18, value: 'j30txfje'},
-        {name: '近90天消费笔数', id: 19, value: 'j90txfbs'},
-        {name: '近90天消费金额', id: 20, value: 'j90txfje'},
-        {name: '可用积分_标准积分账户', id: 21, value: 'kyjf'},
+        {name: '发卡量', id: 35, value: 'fkl'},
+        {name: '18天消费笔数', id: 16, value: '18txfbs'},
+        {name: '18天消费金额', id: 17, value: '18txfje'},
+        {name: '45天消费笔数', id: 18, value: '45txfbs'},
+        {name: '45天消费金额', id: 19, value: '45txfje'},
+        {name: '90天消费笔数', id: 20, value: '90txfbs'},
+        {name: '90天消费金额', id: 21, value: '90txfje'},
       ],
       input1: '',
       input2: '',
@@ -214,7 +216,7 @@ export default {
             }
           }
           namelist.push(name)
-          slList.push(item.sl)
+          slList.push(item.fkl)
         })
         this.chartData = {
           name: namelist,
@@ -278,7 +280,7 @@ export default {
   display: inline;
   margin-top: 2px;
   box-sizing: border-box;
-  padding-left: 10px;
+  padding: 0 10px;
 }
 .title {
   font-size: 18px;

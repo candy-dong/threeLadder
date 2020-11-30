@@ -177,7 +177,7 @@ export default {
         //     data: [title]
         //   },
           series: [{
-            name: '数量', itemStyle: {
+            name: '发卡量', itemStyle: {
               normal: {
                 color: '#FF005A',
                 lineStyle: {
@@ -274,7 +274,7 @@ export default {
             }
           }],
           series: [{
-            name: '数量',
+            name: '发卡量',
             type: 'bar',
             // stack: 'vistors',
             // barWidth: '60%',
@@ -294,7 +294,7 @@ export default {
         this.chart = echarts.init(this.$el, 'macarons')
         this.chart.setOption({
           title: {
-            text: '数量',
+            text: '发卡量',
             left: 'center'
           },
           tooltip: {
@@ -308,7 +308,7 @@ export default {
           },
           series: [
             {
-              name: '数量',
+              name: '发卡量',
               type: 'pie',
               roseType: 'radius',
               radius: [15, 95],
