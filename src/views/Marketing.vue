@@ -54,7 +54,7 @@
           <yijianpaopi @handle="step3" :value="value"></yijianpaopi>
         </el-form-item>
         <el-form-item v-if="active===3">
-          <peizhishuchu></peizhishuchu>
+          <peizhishuchu :value="value"></peizhishuchu>
         </el-form-item>
       </el-form>
     <div class="clear"></div>
@@ -112,8 +112,7 @@ export default {
       active: 0,
       value: '',
       loading: false
-      }
-
+    }
   },
   
   computed: {

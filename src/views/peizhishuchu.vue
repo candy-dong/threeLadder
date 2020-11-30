@@ -38,13 +38,21 @@
     border
     style="width: 100%;margin-top:30px;" :header-cell-style="{'text-align':'center'}">
     <el-table-column
-      prop="date"
+      prop=""
+      type="index"
+      label="序列号"
+      width="80px"
+      align="center">
+    </el-table-column>
+
+    <el-table-column
+      prop="zbId"
       label="指标ID"
       width="80px"
       align="center">
     </el-table-column>
     
-    <el-table-column
+    <!-- <el-table-column
       label="逻辑运算"
       width="">
        <template slot-scope="scope">
@@ -57,8 +65,8 @@
           </el-option>
         </el-select>
       </template>
-    </el-table-column>
-    <el-table-column
+    </el-table-column> -->
+    <!-- <el-table-column
       prop="name"
       label="带括号"
       width="80px"
@@ -66,18 +74,57 @@
       <template slot-scope="scope">
        <el-checkbox v-model="scope.row.checked"></el-checkbox>
       </template>
+    </el-table-column> -->
+     <el-table-column
+      prop="zbBh"
+      label="指标编号"
+      width=""
+      align="center">
     </el-table-column>
     <el-table-column
       prop="city"
       label="指标名"
       width="220px">
     </el-table-column>
-    <el-table-column
+    <!-- <el-table-column
       prop="address"
       label="数据类型"
       width="">
-    </el-table-column>
+    </el-table-column> -->
     <el-table-column
+      prop="fieldName"
+      label="字段名"
+      width="">
+    </el-table-column>
+     <el-table-column
+      label="是否显示"
+      width="">
+      <template  slot-scope="scope">
+        <el-select v-model="scope.row.value4" placeholder="请选择" style="margin-top: 5px">
+          <el-option
+            v-for="item in scope.row.isDisplay"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </template>
+    </el-table-column>
+     <el-table-column
+      label="排序方式"
+      width="">
+      <template  slot-scope="scope">
+        <el-select v-model="scope.row.value5" placeholder="请选择" style="margin-top: 5px">
+          <el-option
+            v-for="item in scope.row.isSort"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+      </template>
+    </el-table-column>
+    <!-- <el-table-column
       label="操作符"
       width="">
        <template  slot-scope="scope">
@@ -90,29 +137,43 @@
           </el-option>
         </el-select>
       </template>
-    </el-table-column>
-    <el-table-column
+    </el-table-column> -->
+    <!-- <el-table-column
       label="指标条件"
       width="">
       <template  slot-scope="scope">
         <el-input v-model="scope.row.input"  placeholder="请输入内容"></el-input>
-        <!-- <el-select v-model="scope.row.value3" placeholder="请选择" style="margin-top: 5px">
+        <el-select v-model="scope.row.value3" placeholder="请选择" style="margin-top: 5px">
           <el-option
             v-for="item in scope.row.filterOptions"
             :key="item.value"
             :label="item.label"
             :value="item.value">
           </el-option>
-        </el-select> -->
+        </el-select>
+      </template>
+    </el-table-column> -->
+     <el-table-column
+      label="备注"
+      width="">
+      <template  slot-scope="scope">
+        <el-select v-model="scope.row.value6" placeholder="请选择" style="margin-top: 5px">
+          <el-option
+            v-for="item in scope.row.remark"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
       </template>
     </el-table-column>
     <el-table-column
       label="操作"
       width="260px">
       <template slot-scope="scope">
-        <el-button type="primary" @click="handleClick(scope.row)" size="small">WHERE预览</el-button>
-        <el-button type="danger" size="small">删除</el-button>
-        <el-button type="success" @click="handleClick(scope.row)" size="small">提示</el-button>
+        <el-button type="primary" @click="moveUp(scope.$index,scope.row)" size="small">上移</el-button>
+        <el-button type="success" @click="moveDown(scope.$index,scope.row)" size="small">下移</el-button>
+        <el-button type="danger" size="small" @click.native.prevent="deleteRow(scope.$index, tableData)">删除</el-button>
         <!-- <el-button type="text" size="small">编辑</el-button> -->
       </template>
     </el-table-column>
@@ -122,134 +183,415 @@
 
 <script>
 let checked = true,
-        options = [{
-          value: '0',
-          label: 'AND'
-        }, {
-          value: '1',
-          label: 'OR'
-        }],
-        value1 = '0',
-        varOptions = [{
-          value: '0',
-          label: '='
-        }, {
-          value: '1',
-          label: '!='
-        },{
-          value: '2',
-          label: '>'
-        },{
-          value: '3',
-          label: '<'
-        },{
-          value: '4',
-          label: '>='
-        },{
-          value: '5',
-          label: '<='
-        }, {
-          value: '6',
-          label: '类似于'
-        }, {
-          value: '7',
-          label: '包含'
-        }, {
-          value: '8',
-          label: '不包含'
-        }],
-        value2 = '',
-        filterOptions = [{
-          value: '0',
-          label: '是'
-        },{
-          value: '1',
-          label: '否'
-        }],
-        value3 = '',
-        input = ''
+options = [{
+  value: '0',
+  label: 'AND'
+}, {
+  value: '1',
+  label: 'OR'
+}],
+value1 = '0',
+varOptions = [{
+  value: '0',
+  label: '='
+}, {
+  value: '1',
+  label: '!='
+},{
+  value: '2',
+  label: '>'
+},{
+  value: '3',
+  label: '<'
+},{
+  value: '4',
+  label: '>='
+},{
+  value: '5',
+  label: '<='
+}, {
+  value: '6',
+  label: '类似于'
+}, {
+  value: '7',
+  label: '包含'
+}, {
+  value: '8',
+  label: '不包含'
+}],
+value2 = '',
+filterOptions = [{
+  value: '0',
+  label: '是'
+},{
+  value: '1',
+  label: '否'
+}],
+value3 = '',
+input = '',
+isDisplay = [{
+  value: '0',
+  label: '显示'
+},{
+  value: '1',
+  label: '不显示'
+}],
+value4 = '',
+isSort = [{
+  value: '0',
+  label: '排序'
+},{
+  value: '1',
+  label: '不排序'
+}],
+value5 = '1',
+remark = [{
+  value: '0',
+  label: '标引号'
+},{
+  value: '1',
+  label: '不标引号'
+}],
+value6 = '1' 
+
 export default {
   name: 'peizhishuchu',
+  props: {
+    value: String
+  },
   data() {
     return {
-        // 表单
-         form: {
-          name: '',
-          region: '',
-          nameData: 3118368
-        },
-      // 表格
-        tableData: [{
-          date: '28',
-          name: '王小虎',
-          province: '上海',
-          city: '近30天消费笔数',
-          address: 'BIGINT',
-          zip: 200333,
-          options,
-          value1,
-          value2,
-          value3,
-          varOptions,
-          input,
-          filterOptions
-        }, {
-          date: '23',
-          name: '王小虎',
-          province: '上海',
-          city: '开户日期',
-          address: 'DATE',
-          zip: 200333,
-          options,
-          value1,
-          value2,
-          value3,
-          varOptions,
-          input,
-          filterOptions
-        }, {
-          date: '13',
-          name: '王小虎',
-          province: '上海',
-          city: '纯MV卡客户',
-          address: 'VARCHAR(1)',
-          zip: 200333,
-          options,
-          value1,
-          value2,
-          value3,
-          varOptions,
-          input,
-          filterOptions
-        }, {
-          date: '941',
-          name: '王小虎',
-          province: '上海',
-          city: '仅持有附属卡客户（AD0198）',
-          address: 'VARCHAR(1)',
-          zip: 200333,
-          options,
-          value1,
-          value2,
-          value3,
-          varOptions,
-          input,
-          filterOptions
-        }]
-      }
+      // 表单
+        form: {
+        name: '',
+        region: '',
+        nameData: 3118368
+      },
+    // 表格
+      tableData: [{
+        zbId: '4',
+        zbBh: 'CSRA0004',
+        city: '近30天消费笔数',
+        fieldName: 'cnt_lst_90',
+        address: 'BIGINT',
+        options,
+        value1,
+        value2,
+        value3,
+        value4: '0',
+        value5,
+        value6,
+        varOptions,
+        input,
+        filterOptions,
+        isDisplay,
+        isSort,
+        remark
+      }, {
+        zbId: '2',
+        zbBh: 'CSRA0002',
+        city: '开户日期',
+        fieldName: 'mob_phe_nbr',
+        address: 'DATE',
+        options,
+        value1,
+        value2,
+        value3,
+        value4: '0',
+        value5,
+        value6,
+        varOptions,
+        input,
+        filterOptions,
+        isDisplay,
+        isSort,
+        remark
+      },{
+        zbId: '941',
+        zbBh: 'CSRA0007',
+        city: '进件类型',
+        fieldName: 'csr_rfe_nbr_txt',
+        address: 'BIGINT',
+        options,
+        value1,
+        value2,
+        value3,
+        value4: '0',
+        value5,
+        value6,
+        varOptions,
+        input,
+        filterOptions,
+        isDisplay,
+        isSort,
+        remark
+      }, {
+        zbId: '28',
+        zbBh: 'CSRA0008',
+        city: '发卡渠道大类',
+        fieldName: 'mob_phe_nbr',
+        address: 'DATE',
+        options,
+        value1,
+        value2,
+        value3,
+        value4: '0',
+        value5,
+        value6,
+        varOptions,
+        input,
+        filterOptions,
+        isDisplay,
+        isSort,
+        remark
+      }],
+       tableDataCopy: [{
+        zbId: '4',
+        zbBh: 'CSRA0004',
+        city: '近30天消费笔数',
+        fieldName: 'csr_rfe_nbr_txt',
+        address: 'BIGINT',
+        options,
+        value1,
+        value2,
+        value3,
+        value4: '0',
+        value5,
+        value6,
+        varOptions,
+        input,
+        filterOptions,
+        isDisplay,
+        isSort,
+        remark
+      }, {
+        zbId: '2',
+        zbBh: 'CSRA0002',
+        city: '开户日期',
+        fieldName: 'mob_phe_nbr',
+        address: 'DATE',
+        options,
+        value1,
+        value2,
+        value3,
+        value4: '0',
+        value5,
+        value6,
+        varOptions,
+        input,
+        filterOptions,
+        isDisplay,
+        isSort,
+        remark
+      },{
+        zbId: '941',
+        zbBh: 'CSRA0007',
+        city: '进件类型',
+        fieldName: 'csr_rfe_nbr_txt',
+        address: 'BIGINT',
+        options,
+        value1,
+        value2,
+        value3,
+        value4: '0',
+        value5,
+        value6,
+        varOptions,
+        input,
+        filterOptions,
+        isDisplay,
+        isSort,
+        remark
+      }, {
+        zbId: '28',
+        zbBh: 'CSRA0008',
+        city: '发卡渠道大类',
+        fieldName: 'mob_phe_nbr',
+        address: 'DATE',
+        options,
+        value1,
+        value2,
+        value3,
+        value4: '0',
+        value5,
+        value6,
+        varOptions,
+        input,
+        filterOptions,
+        isDisplay,
+        isSort,
+        remark
+      }],
+      duanxinData: [{
+        zbId: '47',
+        zbBh: 'CSRA0009',
+        city: '常规性沟通屏蔽客户（顶层）',
+        fieldName: 'com_blk_top_ind',
+        address: 'BIGINT',
+        options,
+        value1,
+        value2,
+        value3,
+        value4: '0',
+        value5,
+        value6,
+        varOptions,
+        input,
+        filterOptions,
+        isDisplay,
+        isSort,
+        remark
+      }, {
+        zbId: '48',
+        zbBh: 'CSRA0010',
+        city: '常规性沟通屏蔽客户（入账层）',
+        fieldName: 'com_blk_ptg_ind',
+        address: 'DATE',
+        options,
+        value1,
+        value2,
+        value3,
+        value4: '0',
+        value5,
+        value6,
+        varOptions,
+        input,
+        filterOptions,
+        isDisplay,
+        isSort,
+        remark
+      },{
+        zbId: '49',
+        zbBh: 'CSRA0011',
+        city: '电话错误客户',
+        fieldName: 'non_tel_csr_ind',
+        address: 'BIGINT',
+        options,
+        value1,
+        value2,
+        value3,
+        value4: '0',
+        value5,
+        value6,
+        varOptions,
+        input,
+        filterOptions,
+        isDisplay,
+        isSort,
+        remark
+      }, {
+        zbId: '50',
+        zbBh: 'CSRA0012',
+        city: '短信屏蔽客户',
+        fieldName: 'non_sms_csr_ind',
+        address: 'DATE',
+        options,
+        value1,
+        value2,
+        value3,
+        value4: '0',
+        value5,
+        value6,
+        varOptions,
+        input,
+        filterOptions,
+        isDisplay,
+        isSort,
+        remark
+      }],
+      pushData: [{
+        zbId: '69',
+        zbBh: 'CSRA0005',
+        city: '是否可推送',
+        fieldName: 'psh_wht_usr',
+        address: 'BIGINT',
+        options,
+        value1,
+        value2,
+        value3,
+        value4: '0',
+        value5,
+        value6,
+        varOptions,
+        input,
+        filterOptions,
+        isDisplay,
+        isSort,
+        remark
+      }, {
+        zbId: '1018',
+        zbBh: 'CSRA0006',
+        city: '买单吧注销用户',
+        fieldName: 'mob_phe_nbr',
+        address: 'DATE',
+        options,
+        value1,
+        value2,
+        value3,
+        value4: '0',
+        value5,
+        value6,
+        varOptions,
+        input,
+        filterOptions,
+        isDisplay,
+        isSort,
+        remark
+      }]
+    }
+  },
+  watch: {
+    value: {
+      handler(val) {
+          if (val === '1') {
+          this.tableData = [...this.tableDataCopy, ...this.pushData]
+        } else if (val === '2') {
+          this.tableData = [...this.tableDataCopy, ...this.duanxinData]
+        }else{
+          this.tableData = this.tableDataCopy
+        }
+      },
+      immediate: true
+    }
   },
   methods: {
-      handleClick(row) {
-        console.log(row);
-      },
        onSubmit() {
         this.$alert('操作成功', '提示', {
           confirmButtonText: '确定',
         }).then(() => {
           this.$router.push('/index')
         })
-      }
+      },
+       deleteRow(index, rows) {
+        rows.splice(index, 1);
+      },
+      //上移
+			moveUp(index, row) {
+				var that = this;
+				if (index > 0) {
+					let upDate = that.tableData[index - 1];
+					that.tableData.splice(index - 1, 1);
+					that.tableData.splice(index, 0, upDate);
+				} else {
+					this.$alert('已经是第一条，不可上移');
+				}
+			},
 
+			//下移
+			moveDown(index, row) {
+				var that = this;
+				console.log('下移', index, row);
+				if ((index + 1) === that.tableData.length) {
+					this.$alert('已经是最后一条，不可下移');
+				} else {
+					// 保存下一条数据
+					let downDate = that.tableData[index + 1];
+					// 删除下一条数据
+					that.tableData.splice(index + 1, 1);
+					// 增添被删除的那一条数据
+					that.tableData.splice(index, 0, downDate);
+				}
+			}
   },
 }
 </script>

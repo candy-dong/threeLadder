@@ -146,127 +146,127 @@ export default {
   props: {
     value: String
   },
-     data() {
-      return {
-    step31: require('../assets/step3-1.png'),
-    step32: require('../assets/step3-2.png'),
-    step33: require('../assets/step3-3.png'),
-    step34: require('../assets/step3-4.png'),
-    tableData: [{
-      date: '941',
-      city: '进件类型',
-      address: 'VARCHAR(1)',
-      options,
-      value1,
-      value2,
-      value3,
-      varOptions,
-      input,
-      filterOptions
-    }, {
-      date: '28',
-      city: '发卡渠道大类',
-      address: 'VARCHAR(1)',
-      options,
-      value1,
-      value2,
-      value3,
-      varOptions,
-      input,
-      filterOptions
-    }],
-    tableDataCopy: [{
-      date: '941',
-      city: '进件类型',
-      address: 'VARCHAR(1)',
-      options,
-      value1,
-      value2,
-      value3,
-      varOptions,
-      input,
-      filterOptions
-    }, {
-      date: '28',
-      city: '发卡渠道大类',
-      address: 'VARCHAR(1)',
-      options,
-      value1,
-      value2,
-      value3,
-      varOptions,
-      input,
-      filterOptions
-    }],
-    duanxinData: [{
-      date: '47',
-      city: '常规性沟通屏蔽客户（顶层）',
-      address: 'VARCHAR(1)',
-      options,
-      value1,
-      value2,
-      value3,
-      varOptions,
-      input,
-      filterOptions
-    }, {
-      date: '48',
-      city: '常规性沟通屏蔽客户（入账层）',
-      address: 'VARCHAR(1)',
-      options,
-      value1,
-      value2,
-      value3,
-      varOptions,
-      input,
-      filterOptions
-    },{
-      date: '49',
-      city: '电话错误客户',
-      address: 'VARCHAR(1)',
-      options,
-      value1,
-      value2,
-      value3,
-      varOptions,
-      input,
-      filterOptions
-    }, {
-      date: '50',
-      city: '短信屏蔽客户',
-      address: 'VARCHAR(1)',
-      options,
-      value1,
-      value2,
-      value3,
-      varOptions,
-      input,
-      filterOptions
-    }],
-    pushData: [{
-      date: '941',
-      city: '是否可推送',
-      address: 'VARCHAR(1)',
-      options,
-      value1,
-      value2,
-      value3: '0',
-      varOptions,
-      input,
-      filterOptions
-    }, {
-      date: '28',
-      city: '买单吧注销用户',
-      address: 'VARCHAR(1)',
-      options,
-      value1,
-      value2,
-      value3,
-      varOptions,
-      input,
-      filterOptions
-    }],
-  }
+  data() {
+    return {
+      step31: require('../assets/step3-1.png'),
+      step32: require('../assets/step3-2.png'),
+      step33: require('../assets/step3-3.png'),
+      step34: require('../assets/step3-4.png'),
+      tableData: [{
+        date: '941',
+        city: '进件类型',
+        address: 'VARCHAR(1)',
+        options,
+        value1,
+        value2,
+        value3,
+        varOptions,
+        input,
+        filterOptions
+      }, {
+        date: '28',
+        city: '发卡渠道大类',
+        address: 'VARCHAR(1)',
+        options,
+        value1,
+        value2,
+        value3,
+        varOptions,
+        input,
+        filterOptions
+      }],
+      tableDataCopy: [{
+        date: '941',
+        city: '进件类型',
+        address: 'VARCHAR(1)',
+        options,
+        value1,
+        value2,
+        value3,
+        varOptions,
+        input,
+        filterOptions
+      }, {
+        date: '28',
+        city: '发卡渠道大类',
+        address: 'VARCHAR(1)',
+        options,
+        value1,
+        value2,
+        value3,
+        varOptions,
+        input,
+        filterOptions
+      }],
+      duanxinData: [{
+        date: '47',
+        city: '常规性沟通屏蔽客户（顶层）',
+        address: 'VARCHAR(1)',
+        options,
+        value1,
+        value2,
+        value3,
+        varOptions,
+        input,
+        filterOptions
+      }, {
+        date: '48',
+        city: '常规性沟通屏蔽客户（入账层）',
+        address: 'VARCHAR(1)',
+        options,
+        value1,
+        value2,
+        value3,
+        varOptions,
+        input,
+        filterOptions
+      },{
+        date: '49',
+        city: '电话错误客户',
+        address: 'VARCHAR(1)',
+        options,
+        value1,
+        value2,
+        value3,
+        varOptions,
+        input,
+        filterOptions
+      }, {
+        date: '50',
+        city: '短信屏蔽客户',
+        address: 'VARCHAR(1)',
+        options,
+        value1,
+        value2,
+        value3,
+        varOptions,
+        input,
+        filterOptions
+      }],
+      pushData: [{
+        date: '941',
+        city: '是否可推送',
+        address: 'VARCHAR(1)',
+        options,
+        value1,
+        value2,
+        value3: '0',
+        varOptions,
+        input,
+        filterOptions
+      }, {
+        date: '28',
+        city: '买单吧注销用户',
+        address: 'VARCHAR(1)',
+        options,
+        value1,
+        value2,
+        value3,
+        varOptions,
+        input,
+        filterOptions
+      }],
+    }
   },
   watch: {
     value(val, old) {
@@ -274,6 +274,8 @@ export default {
         this.tableData = [...this.tableDataCopy, ...this.pushData]
       } else if (val === '2') {
         this.tableData = [...this.tableDataCopy, ...this.duanxinData]
+      }else{
+        this.tableData = this.tableDataCopy
       }
     }
   },
