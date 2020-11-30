@@ -65,15 +65,15 @@
       label="指标条件"
       width="">
       <template  slot-scope="scope">
-        <el-input v-model="scope.row.input"  placeholder="请输入内容"></el-input>
-        <!-- <el-select v-model="scope.row.value3" placeholder="请选择" style="margin-top: 5px">
+        <!-- <el-input v-model="scope.row.input"  placeholder="请输入内容"></el-input> -->
+        <el-select v-model="scope.row.value3" placeholder="请选择" style="margin-top: 5px">
           <el-option
             v-for="item in scope.row.filterOptions"
             :key="item.value"
             :label="item.label"
             :value="item.value">
           </el-option>
-        </el-select> -->
+        </el-select>
       </template>
     </el-table-column>
     <el-table-column
@@ -131,7 +131,7 @@ let checked = true,
           value: '8',
           label: '不包含'
         }],
-        value2 = '',
+        value2 = '0',
         filterOptions = [{
           value: '0',
           label: '是'
@@ -139,10 +139,13 @@ let checked = true,
           value: '1',
           label: '否'
         }],
-        value3 = '',
+        value3 = '1',
         input = ''
 export default {
   name: 'yijianpaopi',
+  props: {
+    value: String
+  },
      data() {
       return {
     step31: require('../assets/step3-1.png'),
@@ -150,63 +153,129 @@ export default {
     step33: require('../assets/step3-3.png'),
     step34: require('../assets/step3-4.png'),
     tableData: [{
-          date: '28',
-          name: '王小虎',
-          province: '上海',
-          city: '近30天消费笔数',
-          address: 'BIGINT',
-          zip: 200333,
-          options,
-          value1,
-          value2,
-          value3,
-          varOptions,
-          input,
-          filterOptions
-        }, {
-          date: '23',
-          name: '王小虎',
-          province: '上海',
-          city: '开户日期',
-          address: 'DATE',
-          zip: 200333,
-          options,
-          value1,
-          value2,
-          value3,
-          varOptions,
-          input,
-          filterOptions
-        }, {
-          date: '13',
-          name: '王小虎',
-          province: '上海',
-          city: '纯MV卡客户',
-          address: 'VARCHAR(1)',
-          zip: 200333,
-          options,
-          value1,
-          value2,
-          value3,
-          varOptions,
-          input,
-          filterOptions
-        }, {
-          date: '941',
-          name: '王小虎',
-          province: '上海',
-          city: '仅持有附属卡客户（AD0198）',
-          address: 'VARCHAR(1)',
-          zip: 200333,
-          options,
-          value1,
-          value2,
-          value3,
-          varOptions,
-          input,
-          filterOptions
-        }]
-     }
+      date: '941',
+      city: '进件类型',
+      address: 'VARCHAR(1)',
+      options,
+      value1,
+      value2,
+      value3,
+      varOptions,
+      input,
+      filterOptions
+    }, {
+      date: '28',
+      city: '发卡渠道大类',
+      address: 'VARCHAR(1)',
+      options,
+      value1,
+      value2,
+      value3,
+      varOptions,
+      input,
+      filterOptions
+    }],
+    tableDataCopy: [{
+      date: '941',
+      city: '进件类型',
+      address: 'VARCHAR(1)',
+      options,
+      value1,
+      value2,
+      value3,
+      varOptions,
+      input,
+      filterOptions
+    }, {
+      date: '28',
+      city: '发卡渠道大类',
+      address: 'VARCHAR(1)',
+      options,
+      value1,
+      value2,
+      value3,
+      varOptions,
+      input,
+      filterOptions
+    }],
+    duanxinData: [{
+      date: '47',
+      city: '常规性沟通屏蔽客户（顶层）',
+      address: 'VARCHAR(1)',
+      options,
+      value1,
+      value2,
+      value3,
+      varOptions,
+      input,
+      filterOptions
+    }, {
+      date: '48',
+      city: '常规性沟通屏蔽客户（入账层）',
+      address: 'VARCHAR(1)',
+      options,
+      value1,
+      value2,
+      value3,
+      varOptions,
+      input,
+      filterOptions
+    },{
+      date: '49',
+      city: '电话错误客户',
+      address: 'VARCHAR(1)',
+      options,
+      value1,
+      value2,
+      value3,
+      varOptions,
+      input,
+      filterOptions
+    }, {
+      date: '50',
+      city: '短信屏蔽客户',
+      address: 'VARCHAR(1)',
+      options,
+      value1,
+      value2,
+      value3,
+      varOptions,
+      input,
+      filterOptions
+    }],
+    pushData: [{
+      date: '941',
+      city: '是否可推送',
+      address: 'VARCHAR(1)',
+      options,
+      value1,
+      value2,
+      value3: '0',
+      varOptions,
+      input,
+      filterOptions
+    }, {
+      date: '28',
+      city: '买单吧注销用户',
+      address: 'VARCHAR(1)',
+      options,
+      value1,
+      value2,
+      value3,
+      varOptions,
+      input,
+      filterOptions
+    }],
+  }
+  },
+  watch: {
+    value(val, old) {
+      if (val === '1') {
+        this.tableData = [...this.tableDataCopy, ...this.pushData]
+      } else if (val === '2') {
+        this.tableData = [...this.tableDataCopy, ...this.duanxinData]
+      }
+    }
   },
   methods: {
     step3() {

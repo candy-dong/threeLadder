@@ -50,8 +50,8 @@
           </el-select>
           <!-- <el-button  type="primary" plain @click="step2" style="margin-left: 10px">确 定</el-button> -->
         </el-form-item>
-        <el-form-item v-if="active===2 && value">
-          <yijianpaopi @handle="step3"></yijianpaopi>
+        <el-form-item v-if="active===2">
+          <yijianpaopi @handle="step3" :value="value"></yijianpaopi>
         </el-form-item>
         <el-form-item v-if="active===3">
           <peizhishuchu></peizhishuchu>
@@ -115,6 +115,7 @@ export default {
       }
 
   },
+  
   computed: {
     modelList() {
       return this.$store.state.modelList
@@ -147,8 +148,6 @@ export default {
           this.$message.error('请确保您已选择渠道')
         }
       }
-
-      
     }
 }
 </script>

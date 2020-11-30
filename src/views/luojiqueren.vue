@@ -61,15 +61,15 @@
       label="指标条件"
       width="">
       <template  slot-scope="scope">
-        <el-input v-model="scope.row.input"  placeholder="请输入内容"></el-input>
-        <!-- <el-select v-model="scope.row.value3" placeholder="请选择" style="margin-top: 5px">
+        <!-- <el-input v-model="scope.row.input"  placeholder="请输入内容"></el-input> -->
+        <el-select v-model="scope.row.value3" placeholder="请选择" style="margin-top: 5px">
           <el-option
             v-for="item in scope.row.filterOptions"
             :key="item.value"
             :label="item.label"
             :value="item.value">
           </el-option>
-        </el-select> -->
+        </el-select>
       </template>
     </el-table-column>
     <el-table-column
@@ -77,7 +77,7 @@
       width="260px">
       <template slot-scope="scope">
         <el-button type="primary" @click="handleClick(scope.row)" size="small">WHERE预览</el-button>
-        <el-button type="danger" size="small">删除</el-button>
+        <el-button type="danger"  @click.native.prevent="deleteRow(scope.$index, tableData)" size="small">删除</el-button>
         <el-button type="success" @click="handleClick(scope.row)" size="small">提示</el-button>
         <!-- <el-button type="text" size="small">编辑</el-button> -->
       </template>
@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import { log } from 'util';
 let checked = true,
         options = [{
           value: '0',
@@ -123,7 +124,7 @@ let checked = true,
           value: '8',
           label: '不包含'
         }],
-        value2 = '',
+        value2 = '0',
         filterOptions = [{
           value: '0',
           label: '是'
@@ -131,53 +132,16 @@ let checked = true,
           value: '1',
           label: '否'
         }],
-        value3 = '',
+        value3 = '1',
         input = ''
   export default {
     name: 'luojiqueren',
-    methods: {
-      handleClick(row) {
-        console.log(row);
-      }
-    },
-
     data() {
       return {
-        tableData: [{
-          date: '28',
-          name: '王小虎',
-          province: '上海',
-          city: '近30天消费笔数',
-          address: 'BIGINT',
-          zip: 200333,
-          options,
-          value1,
-          value2,
-          value3,
-          varOptions,
-          input,
-          filterOptions
-        }, {
-          date: '23',
-          name: '王小虎',
-          province: '上海',
-          city: '开户日期',
-          address: 'DATE',
-          zip: 200333,
-          options,
-          value1,
-          value2,
-          value3,
-          varOptions,
-          input,
-          filterOptions
-        }, {
+        tableData: [ {
           date: '13',
-          name: '王小虎',
-          province: '上海',
-          city: '纯MV卡客户',
+          city: '进系统月份',
           address: 'VARCHAR(1)',
-          zip: 200333,
           options,
           value1,
           value2,
@@ -187,11 +151,30 @@ let checked = true,
           filterOptions
         }, {
           date: '941',
-          name: '王小虎',
-          province: '上海',
-          city: '仅持有附属卡客户（AD0198）',
+          city: '进件类型',
           address: 'VARCHAR(1)',
-          zip: 200333,
+          options,
+          value1,
+          value2,
+          value3,
+          varOptions,
+          input,
+          filterOptions
+        }, {
+          date: '28',
+          city: '发卡渠道大类',
+          address: 'VARCHAR(1)',
+          options,
+          value1,
+          value2,
+          value3,
+          varOptions,
+          input,
+          filterOptions
+        }, {
+          date: '23',
+          city: '发卡量',
+          address: 'BIGINT',
           options,
           value1,
           value2,
@@ -201,6 +184,17 @@ let checked = true,
           filterOptions
         }]
       }
-    }
+    },
+     methods: {
+      handleClick(row) {
+        console.log(row);
+      },
+      deleteRow(index, rows) {
+        if(rows[index].date == '13' || rows[index].date == '23') {
+          rows.splice(index, 1);
+        }
+      }
+    },
+
   }
 </script>
